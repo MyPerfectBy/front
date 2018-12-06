@@ -1,5 +1,6 @@
 import {Feedback} from './feedback.model';
 import {Social} from './social.model';
+import {Photo} from './photo.model';
 
 export abstract class User {
 
@@ -20,11 +21,6 @@ export class Customer extends User {
     role = Role.CUSTOMER;
 }
 
-export class Admin extends User {
-
-    role = Role.ADMIN;
-}
-
 export class Performer extends User {
 
     role = Role.PERFORMER;
@@ -38,6 +34,8 @@ export class Performer extends User {
     feedback: Array<Feedback>;
 
     socials: Array<Social>;
+
+    portfolio: Array<Photo>;
 }
 
 export enum Role {

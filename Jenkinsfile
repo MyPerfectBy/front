@@ -6,8 +6,6 @@ node {
       case "master":
         branch = "Master"
         break
-      default:
-        error "Invalid branch for build"
     }
 }
 

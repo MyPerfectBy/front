@@ -47,6 +47,7 @@ pipeline {
                              sh "rm -rf /home/makeperfectby/Assembly/${branch}/Front/Code/*"
                              sh "cp -r dist/make-perfet-front/* /home/makeperfectby/Assembly/${branch}/Front/Code/"
                              sh "sudo -u root chmod -R 777 /home/makeperfectby/Assembly/${branch}/Front/Code/*"
+                             sh "rm -rf *"
                          } catch (ex) {
                              e = "<code>\u274C ERROR(${env.BRANCH_NAME} frontend branch): DELIVERY ERROR</code>"
                              sh "curl 'https://api.telegram.org/bot705294643:AAGnXC6EzmrpXU4USD6uxq7U1Qt853s4ciY/sendMessage?chat_id=-260723883@Avakada_CI&text=${e}&parse_mode=HTML'"

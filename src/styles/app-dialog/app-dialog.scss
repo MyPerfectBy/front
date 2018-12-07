@@ -1,0 +1,59 @@
+.app-dialog {
+
+  background-color: white;
+}
+
+.app-dialog-form {
+  padding: 16px 12px;
+}
+
+.app-dialog-form__actions {
+  margin-top: 20px;
+}
+
+.app-dialog-form__field {
+
+  min-width: 250px;
+
+  &.mat-form-field {
+    display: block;
+
+    &:not(:first-child) {
+      margin-top: 8px;
+    }
+  }
+}
+
+.app-dialog-header {
+  align-items: center;
+  display: flex;
+  height: 40px;
+}
+
+.app-dialog-header__action {
+  margin-left: auto;
+}
+
+.app-dialog-header__title {
+  padding: 0 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+.app-dialog-footer {
+  display: flex;
+}
+
+.app-dialog-footer__actions {
+  display: flex;
+  margin-left: auto;
+}
+
+.app-dialog-footer__action {
+
+  &:not(:first-child) {
+    margin-left: 20px;
+  }
+}

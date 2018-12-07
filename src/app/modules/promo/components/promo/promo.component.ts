@@ -1,4 +1,9 @@
 import {Component, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material';
+
+import {
+    PerformerRegistrationDialogComponent
+} from '../../../registration/components/performer-registeting-dialog/performer-registration-dialog.component';
 
 @Component({
     selector: 'app-promo',
@@ -10,7 +15,7 @@ export class PromoComponent implements OnInit {
     config: any;
     fullpage_api: any;
 
-    constructor() {
+    constructor(private dialogService: MatDialog) {
 
         this.config = {
 
@@ -18,6 +23,18 @@ export class PromoComponent implements OnInit {
             navigation: true,
 
         };
+    }
+
+    openPerformerRegistrationDialog() {
+        const config = {};
+
+        const dialogRef = this.dialogService.open(PerformerRegistrationDialogComponent, config);
+
+        dialogRef.afterClosed().subscribe(() => {
+
+            console.log('registered');
+        });
+
     }
 
     getRef(fullPageRef) {

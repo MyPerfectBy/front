@@ -1,0 +1,45 @@
+<div class="app-dialog-header">
+
+  <div class="app-dialog-header__title">РЕГИСТРАЦИЯ В КАЧЕСТВЕ МАСТЕРА</div>
+
+</div>
+
+
+<form class="app-dialog-form" #form="ngForm" [formGroup]="formGroup" autocomplete="off">
+
+  <mat-form-field class="app-dialog-form__field">
+
+    <input matInput placeholder="ваш email" formControlName="emailCtrl">
+
+  </mat-form-field>
+
+  <mat-form-field class="app-dialog-form__field">
+
+    <input matInput type="password" placeholder="пароль" formControlName="passwordCtrl">
+
+  </mat-form-field>
+
+  <mat-form-field class="app-dialog-form__field">
+
+    <input matInput type="password"  placeholder="повторите пароль" formControlName="repeatPasswordCtrl">
+
+  </mat-form-field>
+
+</form>
+
+<div class="app-dialog-footer app-dialog-form__actions">
+
+    <div class="app-dialog-footer__actions">
+
+        <button mat-raised-button
+                color="primary"
+                [disabled]="form.invalid">
+
+            ЗАРЕГИСТРИРОВАТЬСЯ
+
+        </button>
+
+    </div>
+
+</div>
+

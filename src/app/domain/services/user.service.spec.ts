@@ -1,25 +1,30 @@
-import {UserService} from './user.service';
+// jasmine
 import createSpyObj = jasmine.createSpyObj;
-import {SecurityService} from './security.service';
-import {Performer, User} from '../models/user.model';
 import Spy = jasmine.Spy;
-import {ApiService} from './api.service';
+
+
+// models
+import {User} from '../models/user.model';
+// service
+import {SecurityService} from './security.service';
+import {StorageService} from './storage.service';
+import {UserService} from './user.service';
 
 describe('UserService', () => {
 
-    let userService: UserService;
-
     let securityServiceSpy: SecurityService;
 
-    let apiService: ApiService;
+    let storageServiceSpy: StorageService;
 
-    beforeEach(function() {
+    let userService: UserService;
+
+    beforeEach(function () {
 
         securityServiceSpy = createSpyObj('SecurityService', ['canCreateUser']);
 
-        apiService = createSpyObj('ApiService', ['CreateUser']);
+        storageServiceSpy = createSpyObj('StorageService', ['createUser']);
 
-        userService = new UserService(securityServiceSpy, apiService);
+        userService = new UserService(securityServiceSpy, storageServiceSpy);
 
     });
 
@@ -31,15 +36,60 @@ describe('UserService', () => {
 
     it('should check permission when create user', () => {
 
-        const user = new Performer();
-
-        userService.createUser(user);
-
         const canCreateUserSpy: Spy = securityServiceSpy.canCreateUser as Spy;
+
+        canCreateUserSpy.and.returnValue(Promise.resolve(true));
+
+        const userStub: User = {} as User;
+
+        userService.createUser(userStub)
+            .then();
+
 
         expect(canCreateUserSpy.calls.any()).toBeTruthy();
     });
 
+    it('should reject creating of a user if it is not permitted', (done: DoneFn) => {
 
+        const canCreateUserSpy: Spy = securityServiceSpy.canCreateUser as Spy;
+
+        canCreateUserSpy.and.returnValue(Promise.resolve(false));
+
+        const userStub: User = {} as User;
+
+        userService.createUser(userStub)
+            .catch((error: Error) => {
+
+                expect(error).toBeTruthy();
+
+                done();
+            });
+    });
+
+    it('should create and return user from storage if it is permitted', (done: DoneFn) => {
+
+        const canCreateUserSpy: Spy = securityServiceSpy.canCreateUser as Spy;
+
+        canCreateUserSpy.and.returnValue(Promise.resolve(true));
+
+
+        const storageUserStub: User = {} as User;
+
+        const createUserSpy: Spy = storageServiceSpy.createUser as Spy;
+
+        createUserSpy.and.returnValue(Promise.resolve(storageUserStub));
+
+
+        const userStub: User = {} as User;
+
+        userService.createUser(userStub).then((user: User) => {
+
+            expect(createUserSpy.calls.any()).toBeTruthy();
+
+            expect(user).toBe(storageUserStub);
+
+            done();
+        });
+    });
 
 });

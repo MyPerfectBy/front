@@ -1,6 +1,7 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
 import {MatDialogRef} from '@angular/material';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
+import {tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-performer-registration-dialog',
@@ -22,15 +23,39 @@ export class PerformerRegistrationDialogComponent implements OnInit {
         this.dialogRef.close();
     }
 
+    onFormSubmit() {
+
+        const registrationDate: PerformerRegistrationData = {
+
+            email: this.formGroup.get('emailCtrl').value,
+
+            password: this.formGroup.get('passwordCtrl').value
+        };
+
+
+        this.dialogRef.close(registrationDate);
+    }
+
     private initializeForm() {
 
         const emailCtrl = new FormControl(null, [Validators.required, Validators.email]);
 
-        // TODO: repeat password validator
+        const passwordCtrl = new FormControl(null, [Validators.required, Validators.minLength(6)]);
 
-        const passwordCtrl = new FormControl(null, [Validators.required]);
+        const passwordMatchedValidatorFn: ValidatorFn = function (control: AbstractControl): ValidationErrors | null {
 
-        const repeatPasswordCtrl = new FormControl(null, [Validators.required]);
+            const value: any = control.value;
+
+            return (!passwordCtrl.valid || value !== passwordCtrl.value) ? { passwordNotMatched: true } : null;
+        };
+
+        const repeatPasswordCtrl = new FormControl(null, [Validators.required, passwordMatchedValidatorFn]);
+
+        passwordCtrl.valueChanges.pipe(
+            tap(() => {
+                   repeatPasswordCtrl.updateValueAndValidity();
+            })
+        ).subscribe();
 
         this.formGroup = new FormGroup({
             emailCtrl,
@@ -43,6 +68,15 @@ export class PerformerRegistrationDialogComponent implements OnInit {
 
         this.initializeForm();
     }
-
-
 }
+
+export class PerformerRegistrationData {
+
+    email: string;
+
+    password: string;
+}
+
+
+
+

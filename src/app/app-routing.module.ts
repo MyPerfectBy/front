@@ -8,7 +8,8 @@ const routes: Routes = [
     {
         path: '',
         component: PromoComponent
-    }, {
+    },
+    {
         path: 'profile',
         loadChildren: 'src/app/modules/profile/profile.module#ProfileModule'
     }

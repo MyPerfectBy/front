@@ -5,7 +5,7 @@
 </div>
 
 
-<form class="app-dialog-form" #form="ngForm" [formGroup]="formGroup" (ngSubmit)="onFormSubmit()" autocomplete="off">
+<form class="app-dialog-form" [formGroup]="formGroup" (ngSubmit)="onFormSubmit()" autocomplete="off">
 
   <mat-form-field class="app-dialog-form__field">
 
@@ -37,7 +37,7 @@
 
       <button mat-raised-button
               color="primary"
-              [disabled]="form.invalid">
+              [disabled]="formGroup.invalid">
 
         ЗАРЕГИСТРИРОВАТЬСЯ
 

@@ -1,7 +1,8 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
+
+// components
 import {PromoComponent} from './modules/promo/components/promo/promo.component';
-import {ProfileComponent} from './modules/profile/components/profile/profile.component';
 
 const routes: Routes = [
     {
@@ -9,13 +10,17 @@ const routes: Routes = [
         component: PromoComponent
     }, {
         path: 'profile',
-        component: ProfileComponent
+        loadChildren: 'src/app/modules/profile/profile.module#ProfileModule'
     }
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
+    exports: [
+        RouterModule
+    ],
+    imports: [
+        RouterModule.forRoot(routes)
+    ],
 })
 export class AppRoutingModule {
 }

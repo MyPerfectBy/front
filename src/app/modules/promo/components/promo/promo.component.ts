@@ -30,11 +30,11 @@ export class PromoComponent implements OnInit {
 
         const dialogRef = this.dialogService.open(PerformerRegistrationDialogComponent, config);
 
-        dialogRef.afterClosed().subscribe((registrationDate: PerformerRegistrationData) => {
+        dialogRef.afterClosed().subscribe((registrationData: PerformerRegistrationData) => {
 
-            if (!registrationDate) { return; }
+            if (!registrationData) { return; }
 
-            console.log('send info for creating performer', registrationDate);
+            console.log('send info for creating performer', registrationData);
         });
 
     }

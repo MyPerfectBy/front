@@ -10,7 +10,7 @@ const routes: Routes = [
         component: PromoComponent
     },
     {
-        path: 'profile',
+        path: ':username',
         loadChildren: 'src/app/modules/profile/profile.module#ProfileModule'
     }
 ];

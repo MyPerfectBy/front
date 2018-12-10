@@ -12,14 +12,12 @@ import {ProfileComponent} from './components/profile/profile.component';
     ],
     imports: [
         CommonModule,
-        RouterModule.forRoot(
-            [
-                {
-                    path: ':username',
-                    component: ProfileComponent
-                }
-            ]
-        )
+        RouterModule.forChild([
+            {
+                path: '',
+                component: ProfileComponent
+            }
+        ])
     ]
 })
 export class ProfileModule {

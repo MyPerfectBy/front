@@ -1,15 +1,14 @@
-import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {PromoModule} from './modules/promo/promo.module';
 
 // modules
+import {HeaderComponent} from './components/header/header.component';
 import {RegistrationModule} from './modules/registration/registration.module';
-import {ProfileModule} from './modules/profile/profile.module';
-import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +22,7 @@ import { HeaderComponent } from './components/header/header.component';
 
     // Application Modules
     PromoModule,
-    RegistrationModule,
-    ProfileModule
+    RegistrationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

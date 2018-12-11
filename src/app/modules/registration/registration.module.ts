@@ -8,7 +8,7 @@ import {
     MatButtonModule,
     MatDatepickerModule, MatDialogModule,
     MatFormFieldModule, MatIconModule,
-    MatInputModule,
+    MatInputModule, MatProgressBarModule, MatProgressSpinnerModule,
     MatSelectModule
 } from '@angular/material';
 
@@ -31,7 +31,8 @@ import { PerformerRegistrationDialogComponent } from './components/performer-reg
       MatFormFieldModule,
       MatIconModule,
       MatInputModule,
-      MatSelectModule,
+      MatProgressSpinnerModule,
+      MatSelectModule
   ]
 })
 export class RegistrationModule { }

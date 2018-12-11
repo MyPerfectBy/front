@@ -1,6 +1,8 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
 import {MatDialogRef} from '@angular/material';
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
+// rxjs
+import {Subject} from 'rxjs';
 import {tap} from 'rxjs/operators';
 
 @Component({
@@ -11,6 +13,8 @@ import {tap} from 'rxjs/operators';
 export class PerformerRegistrationDialogComponent implements OnInit {
 
     formGroup: FormGroup;
+
+    isProgressVisible$ = new Subject<boolean>();
 
     @HostBinding('class.app-dialog') private isDefaultClassUsed = true;
 
@@ -34,6 +38,11 @@ export class PerformerRegistrationDialogComponent implements OnInit {
 
 
         this.dialogRef.close(registrationDate);
+    }
+
+    private hideProgress(): void {
+
+        this.isProgressVisible$.next(false);
     }
 
     private initializeForm() {
@@ -62,6 +71,11 @@ export class PerformerRegistrationDialogComponent implements OnInit {
             passwordCtrl,
             repeatPasswordCtrl
         });
+    }
+
+    private showProgress(): void {
+
+        this.isProgressVisible$.next(true);
     }
 
     ngOnInit() {

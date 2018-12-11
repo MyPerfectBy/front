@@ -49,5 +49,15 @@
 
 </form>
 
+<div class="app-dialog-overlay" *ngIf="isProgressVisible$ | async">
+
+    <div class="app-dialog-overlay__spinner">
+
+        <mat-progress-spinner  mode="indeterminate"></mat-progress-spinner>
+
+    </div>
+
+</div>
+
 
 

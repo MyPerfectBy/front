@@ -1,6 +1,6 @@
 // angular modules
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 // material
@@ -8,30 +8,35 @@ import {
     MatButtonModule,
     MatDatepickerModule, MatDialogModule,
     MatFormFieldModule, MatIconModule,
-    MatInputModule,
+    MatInputModule, MatProgressSpinnerModule,
     MatSelectModule
 } from '@angular/material';
 
 // components
-import { PerformerRegistrationDialogComponent } from './components/performer-registeting-dialog/performer-registration-dialog.component';
+import {PerformerRegistrationDialogComponent} from './components/performer-registration-dialog/performer-registration-dialog.component';
+
 
 @NgModule({
-  declarations: [PerformerRegistrationDialogComponent],
-  entryComponents: [
-      PerformerRegistrationDialogComponent,
-  ],
-  imports: [
-      CommonModule,
-      FormsModule,
-      ReactiveFormsModule,
+    declarations: [
+        PerformerRegistrationDialogComponent
+    ],
+    entryComponents: [
+        PerformerRegistrationDialogComponent
+    ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
 
-      MatButtonModule,
-      MatDatepickerModule,
-      MatDialogModule,
-      MatFormFieldModule,
-      MatIconModule,
-      MatInputModule,
-      MatSelectModule,
-  ]
+        MatButtonModule,
+        MatDatepickerModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatProgressSpinnerModule,
+        MatSelectModule
+    ]
 })
-export class RegistrationModule { }
+export class RegistrationModule {
+}

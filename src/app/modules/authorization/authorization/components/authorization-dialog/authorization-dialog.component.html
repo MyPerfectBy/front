@@ -1,0 +1,57 @@
+<div class="app-dialog-header" cdkFocusInitial>
+
+    <div class="app-dialog-header__title app-dialog-header__title_uppercase"> Вход в «Make Perfect»</div>
+</div>
+
+<div class="app-dialog-social-networks">
+
+    <button mat-icon-button type="button">
+        <mat-icon svgIcon="google-plus" aria-label="google-plus"></mat-icon>
+    </button>
+
+    <button mat-icon-button type="button">
+        <mat-icon svgIcon="vk" aria-label="VKontakte"></mat-icon>
+    </button>
+
+    <button mat-icon-button type="button">
+        <mat-icon svgIcon="odnoklassniki" aria-label="odnoklassniki"></mat-icon>
+    </button>
+
+</div>
+<mat-divider></mat-divider>
+
+<form class="app-dialog-form" [formGroup]="formGroup" (ngSubmit)="onFormSubmit()" autocomplete="off">
+
+    <mat-form-field class="app-dialog-form__field">
+
+        <input matInput placeholder="Ваш email" formControlName="emailCtrl">
+
+        <mat-error>Введите корректный email</mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field class="app-dialog-form__field">
+
+        <input matInput type="password" placeholder="Ваш пароль" formControlName="passwordCtrl">
+
+        <mat-error>Введите корректный пароль</mat-error>
+
+    </mat-form-field>
+
+    <div class="app-dialog-footer app-dialog-form__actions">
+
+        <div class="app-dialog-footer__actions">
+
+            <button mat-raised-button
+                    color="primary"
+                    [disabled]="formGroup.invalid">
+
+                ВХОД
+
+            </button>
+
+        </div>
+
+    </div>
+</form>
+

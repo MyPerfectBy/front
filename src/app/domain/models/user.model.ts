@@ -9,6 +9,10 @@ export abstract class User {
 
     username: string;
 
+    email: string;
+
+    password: string;
+
     abstract role: Role;
 
     avatar: string;

@@ -1,3 +1,4 @@
+// page #1
 .page-container {
   position: relative;
   height: 100%;
@@ -80,4 +81,61 @@
     color: #ee8d6c;
   }
   transition: color 0.2s;
+}
+
+
+// page #2
+
+
+.main-content-page-two {
+  height: 100%;
+  padding: 3vh 17.35% 6vh;
+}
+
+.frame {
+  height: 100%;
+  border: 10px solid transparent;
+  border-image: linear-gradient(to right, #ee6e9f 0%, #ee8d6c 100%) 1;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+
+}
+
+.main-content-page-two__title {
+  margin: 2% 40px;
+}
+
+.main-content-page-two__title_font {
+  font-family: Proxima Nova Lt;
+  font-weight: 600;
+  font-size: 2vw;
+}
+
+.main-content-page-two__image {
+  display: flex;
+  justify-content: center;
+  margin: 0 20px;
+}
+
+.main-content-page-two__image_size {
+  width: 100%;
+  height: auto;
+}
+
+.main-content-page-two__feedback {
+  margin: 2% 0 2% 36%;
+}
+
+.main-content-page-two__feedback_title {
+  margin: 0 0 6% 0;
+  font-family: Proxima Nova Lt;
+  font-weight: 600;
+  font-size: 2vw;
+}
+
+.main-content-page-two__feedback_description {
+  font-family: Proxima Nova Lt;
+  font-weight: 600;
+  font-size: 1.2vw;
 }

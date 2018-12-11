@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material';
 
 import {
-    PerformerRegistrationDialogComponent, PerformerRegistrationData
-} from '../../../registration/components/performer-registeting-dialog/performer-registration-dialog.component';
+    PerformerRegistrationDialogComponent
+} from '../../../registration/components/performer-registration-dialog/performer-registration-dialog.component';
 import {
     AuthorizationDialogComponent
 } from '../../../authorization/authorization/components/authorization-dialog/authorization-dialog.component';
@@ -28,24 +28,12 @@ export class PromoComponent implements OnInit {
         };
     }
 
-    openPerformerRegistrationDialog() {
+    openPerformerRegistrationDialog(): void {
 
-        const dialogRef = this.dialogService.open(PerformerRegistrationDialogComponent, {
-            autoFocus: false
-        });
-
-        dialogRef.afterClosed().subscribe((registrationData: PerformerRegistrationData) => {
-
-            if (!registrationData) {
-                return;
-            }
-
-            console.log('send info for creating performer', registrationData);
-        });
-
+        this.dialogService.open(PerformerRegistrationDialogComponent);
     }
 
-    openAuthorizationDialog() {
+    openAuthorizationDialog(): void {
         const config = {};
 
         const dialogRef = this.dialogService.open(AuthorizationDialogComponent, config);

@@ -1,3 +1,120 @@
-<p>
-  profile works!
-</p>
+<div class="app-performer-profile__summary">
+
+  <div class="app-performer-profile__summary-header-line">
+
+    <div class="app-performer-profile__avatar">
+
+      <img [src]="performer.avatar" class="app-performer-profile__avatar-img">
+    </div>
+
+    <div class="app-performer-profile__statistic">
+
+      <div class="app-performer-profile__statistic-item">
+
+        <div class="app-performer-profile__statistic-item-value">
+          {{performer.viewsCount}}
+        </div>
+
+        <div class="app-performer-profile__statistic-item-text">
+          просмотра
+        </div>
+
+      </div>
+
+      <div class="app-performer-profile__statistic-item">
+
+        <div class="app-performer-profile__statistic-item-value">
+          12
+        </div>
+
+        <div class="app-performer-profile__statistic-item-text">
+          отзывов
+        </div>
+
+      </div>
+
+      <div class="app-performer-profile__statistic-item">
+
+        <div class="app-performer-profile__statistic-item-value">
+          7
+        </div>
+
+        <div class="app-performer-profile__statistic-item-text">
+          советуют
+        </div>
+
+      </div>
+
+      <div class="app-performer-profile__statistic-action">
+
+        <button class="app-performer-profile__feedback-button">написать отзыв</button>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+  <div class="app-performer-profile__title">
+
+    {{performer.username}}
+  </div>
+
+  <div class="app-performer-profile__description">
+
+    {{performer.description}}
+
+  </div>
+
+</div>
+
+<div class="app-performer-profile__details">
+
+  <div class="app-performer-profile__portfolio_wrapped">
+
+    <div class="app-performer-profile__portfolio">
+
+        <div class="app-performer-profile__portfolio-item" *ngFor="let portfolioItem of performer.portfolio">
+
+          <img class="app-performer-profile__portfolio-item-img" [src]="portfolioItem.url">
+        </div>
+    </div>
+
+  </div>
+
+  <div class="app-performer-profile__services">
+
+    <div class="app-performer-profile__services-title">
+
+      Услуги
+
+    </div>
+
+    <div class="app-performer-profile__services-info">
+
+      Работаю в Минске, ул.Сторожевская 6. Выезжаю домой, люблю тортики.
+
+    </div>
+
+    <div class="app-performer-profile__services-item" *ngFor="let performerService of performer.services">
+
+      <div class="app-performer-profile__services-item-title">
+        {{performerService.title}}
+      </div>
+
+      <div class="app-performer-profile__services-item-price">
+        {{performerService.price}} BYN
+      </div>
+
+
+    </div>
+
+  </div>
+
+  <div class="app-performer-profile-contacts">
+      Contacts
+
+  </div>
+
+</div>

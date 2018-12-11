@@ -2,8 +2,14 @@
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 @import url(~fullpage.js/dist/fullpage.min.css);
 
+// fonts
+@import "assets/fonts/ProximaNova/stylesheet.css";
+
 @import "styles/app-dialog/app-dialog.scss";
 @import "styles/app-dialog/app-dialog-overlay.scss";
+@import "styles/app-profile/app-performer-profile";
+@import "styles/app-profile/app-performer-portfolio";
+@import "styles/app-profile/app-performer-services";
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

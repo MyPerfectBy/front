@@ -1,13 +1,141 @@
-.section {
-  text-align: center;
-  font-size: 3em;
+// page #1
+.page-container {
+  position: relative;
+  height: 100%;
+  background: linear-gradient(to right, #ee6e9f, #ee8d6c);
+
 }
 
-.section_1 {
-  background: url("../../../../../assets/images/promo1.jpg") center fixed no-repeat;
-  background-size: 100%;
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6vh 17.35% 10vh;
 }
 
-.registrationBtn {
-  background: aliceblue;
+.logo {
+  display: flex;
+  flex: 1;
+  font-family: Proxima Nova Th;
+  font-weight: 800;
+  font-size: 2vw;
+  text-transform: uppercase;
+  color: white;
+}
+
+.log-in {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+
+  font-family: Proxima Nova Th;
+  font-weight: 800;
+  font-size: 1.11vw;
+  color: white;
+}
+
+.log-in__cursor {
+  cursor: pointer;
+}
+
+
+.main-content {
+  height: 100%;
+  padding: 0 17.35% 5vh
+}
+
+.typing-text {
+  font-size: 4.4vw;
+  font-weight: 300;
+  line-height: 6.2vw;
+  margin-bottom: 5vh;
+  height: 23.92vw;
+}
+
+.typing-text__font {
+  font-family: Proxima Nova Th;
+  font-weight: 800;
+  color: white;
+}
+
+.fibery-sign-in-btn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sign-in {
+  background-color: white;
+  border-radius: 5px;
+}
+
+.sign-in__btn {
+  font-family: Proxima Nova Th;
+  font-weight: 800;
+  color: #ee6e9f;
+  font-size: 2vw;
+  padding: 2vh 4vh 3vh;
+
+  &:hover {
+    color: #ee8d6c;
+  }
+  transition: color 0.2s;
+}
+
+
+// page #2
+
+
+.main-content-page-two {
+  height: 100%;
+  padding: 3vh 17.35% 6vh;
+}
+
+.frame {
+  height: 100%;
+  border: 10px solid transparent;
+  border-image: linear-gradient(to right, #ee6e9f 0%, #ee8d6c 100%) 1;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+
+}
+
+.main-content-page-two__title {
+  margin: 2% 40px;
+}
+
+.main-content-page-two__title_font {
+  font-family: Proxima Nova Lt;
+  font-weight: 600;
+  font-size: 2vw;
+}
+
+.main-content-page-two__image {
+  display: flex;
+  justify-content: center;
+  margin: 0 20px;
+}
+
+.main-content-page-two__image_size {
+  width: 100%;
+  height: auto;
+}
+
+.main-content-page-two__feedback {
+  margin: 2% 0 2% 36%;
+}
+
+.main-content-page-two__feedback_title {
+  margin: 0 0 6% 0;
+  font-family: Proxima Nova Lt;
+  font-weight: 600;
+  font-size: 2vw;
+}
+
+.main-content-page-two__feedback_description {
+  font-family: Proxima Nova Lt;
+  font-weight: 600;
+  font-size: 1.2vw;
 }

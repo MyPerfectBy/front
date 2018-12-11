@@ -1,6 +1,7 @@
 import {Feedback} from './feedback.model';
 import {Social} from './social.model';
 import {Photo} from './photo.model';
+import {Service} from './service.model';
 
 export abstract class User {
 
@@ -13,6 +14,8 @@ export abstract class User {
     password: string;
 
     abstract role: Role;
+
+    avatar: string;
 }
 
 export class Admin extends User {
@@ -34,6 +37,8 @@ export class Performer extends User {
     description: string;
 
     viewsCount: number;
+
+    services: Array<Service>;
 
     feedback: Array<Feedback>;
 

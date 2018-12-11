@@ -1,0 +1,50 @@
+@import "../mixins.scss";
+
+$portfolioItemHeight: 250px;
+$portfolioWidth: 3 * $portfolioItemHeight;
+
+.app-performer-profile__portfolio {
+  
+  display: block;
+  direction: rtl;
+  width: calc(#{$portfolioItemHeight} + 20px);
+  max-height: $portfolioWidth + 5px;
+  margin: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transform: rotate(-90deg) translateY(-$portfolioItemHeight);
+  transform-origin: right top;
+  box-sizing: border-box;
+  @include  scrollbar();
+  & > div {
+    display: block;
+    padding: 0;
+    box-sizing: border-box;
+    transform: rotate(90deg);
+    transform-origin: right top;
+  }
+
+}
+
+.app-performer-profile__portfolio-item {
+
+  padding: $portfolioItemHeight 0 0 0;
+  & > div {
+    width: $portfolioItemHeight;
+    height: $portfolioItemHeight;
+    padding-left: 4px;
+    box-sizing: border-box;
+  }
+}
+
+.app-performer-profile__portfolio-item-img {
+  width: $portfolioItemHeight;
+  height: $portfolioItemHeight;
+  box-sizing: border-box;
+  border-radius: 5%;
+}
+
+.app-performer-profile__portfolio_wrapped {
+
+  height: 300px;
+}

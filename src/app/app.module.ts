@@ -9,6 +9,7 @@ import {PromoModule} from './modules/promo/promo.module';
 // modules
 import {HeaderComponent} from './components/header/header.component';
 import {RegistrationModule} from './modules/registration/registration.module';
+import {AuthorizationModule} from './modules/authorization/authorization/authorization.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {RegistrationModule} from './modules/registration/registration.module';
 
     // Application Modules
     PromoModule,
-    RegistrationModule
+    RegistrationModule,
+    AuthorizationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -38,6 +38,10 @@
   white-space: nowrap;
 }
 
+.app-dialog-header__title_uppercase{
+    text-transform: uppercase;
+}
+
 
 .app-dialog-footer {
   display: flex;
@@ -53,4 +57,10 @@
   &:not(:first-child) {
     margin-left: 20px;
   }
+}
+.app-dialog-social-networks{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    margin-bottom: 4px;
 }

@@ -4,6 +4,9 @@ import {MatDialog} from '@angular/material';
 import {
     PerformerRegistrationDialogComponent, PerformerRegistrationData
 } from '../../../registration/components/performer-registeting-dialog/performer-registration-dialog.component';
+import {
+    AuthorizationDialogComponent
+} from '../../../authorization/authorization/components/authorization-dialog/authorization-dialog.component';
 
 @Component({
     selector: 'app-promo',
@@ -26,17 +29,29 @@ export class PromoComponent implements OnInit {
     }
 
     openPerformerRegistrationDialog() {
-        const config = {};
 
-        const dialogRef = this.dialogService.open(PerformerRegistrationDialogComponent, config);
+        const dialogRef = this.dialogService.open(PerformerRegistrationDialogComponent, {
+            autoFocus: false
+        });
 
         dialogRef.afterClosed().subscribe((registrationData: PerformerRegistrationData) => {
 
-            if (!registrationData) { return; }
+            if (!registrationData) {
+                return;
+            }
 
             console.log('send info for creating performer', registrationData);
         });
 
+    }
+
+    openAuthorizationDialog() {
+        const config = {};
+
+        const dialogRef = this.dialogService.open(AuthorizationDialogComponent, config);
+
+        dialogRef.afterClosed().subscribe((data) => {
+        });
     }
 
     getRef(fullPageRef) {

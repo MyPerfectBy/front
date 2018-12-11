@@ -3,10 +3,11 @@ import {MatDialogRef} from '@angular/material';
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 import {tap} from 'rxjs/operators';
 
+
 @Component({
-  selector: 'app-performer-registration-dialog',
-  templateUrl: './performer-registration-dialog.component.html',
-  styleUrls: ['./performer-registration-dialog.component.scss']
+    selector: 'app-performer-registration-dialog',
+    templateUrl: './performer-registration-dialog.component.html',
+    styleUrls: ['./performer-registration-dialog.component.scss']
 })
 export class PerformerRegistrationDialogComponent implements OnInit {
 
@@ -15,8 +16,7 @@ export class PerformerRegistrationDialogComponent implements OnInit {
     @HostBinding('class.app-dialog') private isDefaultClassUsed = true;
 
     constructor(private dialogRef: MatDialogRef<PerformerRegistrationDialogComponent>) {
-
-    }
+        }
 
     close() {
 
@@ -46,14 +46,14 @@ export class PerformerRegistrationDialogComponent implements OnInit {
 
             const value: any = control.value;
 
-            return (!passwordCtrl.valid || value !== passwordCtrl.value) ? { passwordNotMatched: true } : null;
+            return (!passwordCtrl.valid || value !== passwordCtrl.value) ? {passwordNotMatched: true} : null;
         };
 
         const repeatPasswordCtrl = new FormControl(null, [Validators.required, passwordMatchedValidatorFn]);
 
         passwordCtrl.valueChanges.pipe(
             tap(() => {
-                   repeatPasswordCtrl.updateValueAndValidity();
+                repeatPasswordCtrl.updateValueAndValidity();
             })
         ).subscribe();
 

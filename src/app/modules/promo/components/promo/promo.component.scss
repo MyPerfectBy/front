@@ -87,7 +87,7 @@
 // page #2
 
 
-.main-content-page-two {
+.main-content-page {
   height: 100%;
   padding: 3vh 17.35% 6vh;
 }
@@ -102,40 +102,46 @@
 
 }
 
-.main-content-page-two__title {
+.main-content-page__title {
   margin: 2% 40px;
 }
 
-.main-content-page-two__title_font {
+.main-content-page__title_font {
   font-family: Proxima Nova Lt;
   font-weight: 600;
   font-size: 2vw;
 }
 
-.main-content-page-two__image {
+.main-content-page__image {
   display: flex;
   justify-content: center;
   margin: 0 20px;
 }
 
-.main-content-page-two__image_size {
+.main-content-page__image_size {
   width: 100%;
   height: auto;
 }
 
-.main-content-page-two__feedback {
-  margin: 2% 0 2% 36%;
+.main-content-page__definition {
+  margin: 2% 0 5% 36%;
 }
 
-.main-content-page-two__feedback_title {
-  margin: 0 0 6% 0;
+.main-content-page__definition_title {
+  margin: 0 0 4% 0;
   font-family: Proxima Nova Lt;
   font-weight: 600;
   font-size: 2vw;
 }
 
-.main-content-page-two__feedback_description {
-  font-family: Proxima Nova Lt;
-  font-weight: 600;
+.main-content-page__definition_description {
+  font-family: Proxima Nova Rg;
+  font-weight: normal;
   font-size: 1.2vw;
+}
+
+.link {
+  color: #ED7B89;
+  cursor: pointer;
+  font-weight: 600;
 }

@@ -1,14 +1,17 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
-import {MatDialogRef} from '@angular/material';
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
 // rxjs
 import {Subject} from 'rxjs';
 import {tap} from 'rxjs/operators';
+// models
+import {Performer} from '../../../../domain/models/user.model';
+// services
+import {UserService} from '../../../../domain/services/user.service';
 
 @Component({
-  selector: 'app-performer-registration-dialog',
-  templateUrl: './performer-registration-dialog.component.html',
-  styleUrls: ['./performer-registration-dialog.component.scss']
+    selector: 'app-performer-registration-dialog',
+    templateUrl: './performer-registration-dialog.component.html',
+    styleUrls: ['./performer-registration-dialog.component.scss']
 })
 export class PerformerRegistrationDialogComponent implements OnInit {
 
@@ -18,26 +21,27 @@ export class PerformerRegistrationDialogComponent implements OnInit {
 
     @HostBinding('class.app-dialog') private isDefaultClassUsed = true;
 
-    constructor(private dialogRef: MatDialogRef<PerformerRegistrationDialogComponent>) {
-
-    }
-
-    close() {
-
-        this.dialogRef.close();
+    constructor(private userService: UserService) {
     }
 
     onFormSubmit() {
 
-        const registrationDate: PerformerRegistrationData = {
+        const performer = new Performer();
 
-            email: this.formGroup.get('emailCtrl').value,
+        performer.email = this.formGroup.get('emailCtrl').value;
 
-            password: this.formGroup.get('passwordCtrl').value
-        };
+        performer.password = this.formGroup.get('passwordCtrl').value;
 
+        this.showProgress();
 
-        this.dialogRef.close(registrationDate);
+        this.userService.createUser(performer)
+            .then(() => {
+            })
+            .catch(() => {
+
+                this.hideProgress();
+            })
+        ;
     }
 
     private hideProgress(): void {
@@ -55,14 +59,14 @@ export class PerformerRegistrationDialogComponent implements OnInit {
 
             const value: any = control.value;
 
-            return (!passwordCtrl.valid || value !== passwordCtrl.value) ? { passwordNotMatched: true } : null;
+            return (!passwordCtrl.valid || value !== passwordCtrl.value) ? {passwordNotMatched: true} : null;
         };
 
         const repeatPasswordCtrl = new FormControl(null, [Validators.required, passwordMatchedValidatorFn]);
 
         passwordCtrl.valueChanges.pipe(
             tap(() => {
-                   repeatPasswordCtrl.updateValueAndValidity();
+                repeatPasswordCtrl.updateValueAndValidity();
             })
         ).subscribe();
 
@@ -82,13 +86,6 @@ export class PerformerRegistrationDialogComponent implements OnInit {
 
         this.initializeForm();
     }
-}
-
-export class PerformerRegistrationData {
-
-    email: string;
-
-    password: string;
 }
 
 

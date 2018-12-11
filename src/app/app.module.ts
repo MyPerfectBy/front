@@ -9,23 +9,30 @@ import {PromoModule} from './modules/promo/promo.module';
 // modules
 import {HeaderComponent} from './components/header/header.component';
 import {RegistrationModule} from './modules/registration/registration.module';
+// services
+import {UserService} from './domain/services/user.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
+    declarations: [
+        AppComponent,
+        HeaderComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
 
-    // Application Modules
-    PromoModule,
-    RegistrationModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+        // Application Modules
+        PromoModule,
+        RegistrationModule
+    ],
+    providers: [
+        {
+            provide: UserService,
+            deps: []
+        },
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }

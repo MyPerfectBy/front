@@ -1,22 +1,22 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {ReactiveFormsModule} from '@angular/forms';
-import {MatFormFieldModule, MatInputModule, MatProgressSpinnerModule} from '@angular/material';
+import {MatDialogRef, MatFormFieldModule, MatInputModule, MatProgressSpinnerModule} from '@angular/material';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {Router} from '@angular/router';
 
 // jasmine
 import createSpyObj = jasmine.createSpyObj;
 import Spy = jasmine.Spy;
 
 // rxjs
-import {take} from 'rxjs/operators';
+import {EMPTY, of, throwError} from 'rxjs';
+import {skip, take} from 'rxjs/operators';
 
 // model
 import {Performer} from '../../../../domain/models/user.model';
-// services
-import {UserService} from '../../../../domain/services/user.service';
 // components
 import {PerformerRegistrationDialogComponent} from './performer-registration-dialog.component';
-import {Router} from '@angular/router';
+import {RegistrationService} from '../../services/registration.service';
 
 describe('PerformerRegistrationDialogComponent', () => {
 
@@ -28,13 +28,17 @@ describe('PerformerRegistrationDialogComponent', () => {
 
     let routerSpy: Router;
 
-    let userServiceSpy: UserService;
+    let matDialogRefStub: MatDialogRef<PerformerRegistrationDialogComponent>;
+
+    let registrationServiceSpy: RegistrationService;
 
     beforeEach(async(() => {
 
         routerSpy = createSpyObj('Router', ['navigate']);
 
-        userServiceSpy = createSpyObj('UserService', ['createUser']);
+        matDialogRefStub = createSpyObj('MatDialogRef', ['close']);
+
+        registrationServiceSpy = createSpyObj('RegistrationService', ['registerViaEmail']);
 
         TestBed.configureTestingModule({
             declarations: [
@@ -50,8 +54,8 @@ describe('PerformerRegistrationDialogComponent', () => {
                 MatProgressSpinnerModule
             ],
             providers: [
-                {provide: Router, useValue: routerSpy},
-                {provide: UserService, useValue: userServiceSpy}
+                {provide: MatDialogRef, useValue: matDialogRefStub},
+                {provide: RegistrationService, useValue: registrationServiceSpy}
             ]
         }).compileComponents();
     }));
@@ -72,9 +76,9 @@ describe('PerformerRegistrationDialogComponent', () => {
 
     it('should show progress during registration', (done: DoneFn) => {
 
-        const createUserSpy: Spy = userServiceSpy.createUser as Spy;
+        const registerUserSpy: Spy = registrationServiceSpy.registerViaEmail as Spy;
 
-        createUserSpy.and.returnValue(new Promise(null));
+        registerUserSpy.and.returnValue(EMPTY);
 
 
         component.isProgressVisible$.pipe(
@@ -91,15 +95,14 @@ describe('PerformerRegistrationDialogComponent', () => {
         component.onFormSubmit();
     });
 
-    it('should hide progress is registration is rejected', (done: DoneFn) => {
+    it('should hide progress if registration is rejected', (done: DoneFn) => {
 
-        const createUserSpy: Spy = userServiceSpy.createUser as Spy;
+        const registerUserSpy: Spy = registrationServiceSpy.registerViaEmail as Spy;
 
-        createUserSpy.and.returnValue(Promise.reject());
-
-        component.onFormSubmit();
+        registerUserSpy.and.returnValue(throwError(new Error()));
 
         component.isProgressVisible$.pipe(
+            skip(1),
             take(1)
         ).subscribe(
             (isProgressVisible: boolean) => {
@@ -109,13 +112,36 @@ describe('PerformerRegistrationDialogComponent', () => {
                 done();
             }
         );
+
+        component.onFormSubmit();
     });
 
-    it('should create user on form submit', () => {
+    it('should close progress if registration is completed', () => {
 
-        const createUserSpy: Spy = userServiceSpy.createUser as Spy;
+        const performerStub = new Performer();
 
-        createUserSpy.and.returnValue(new Promise(null));
+
+        const registerViaEmail: Spy = registrationServiceSpy.registerViaEmail as Spy;
+
+        registerViaEmail.and.returnValue(of(performerStub));
+
+
+        const closeSpy: Spy = matDialogRefStub.close as Spy;
+
+
+        component.onFormSubmit();
+
+
+        const [resultPerformer]: [Performer] = closeSpy.calls.first().args as [Performer];
+
+        expect(resultPerformer).toBe(performerStub);
+    });
+
+    it('should register user on form submit', () => {
+
+        const registerViaEmail: Spy = registrationServiceSpy.registerViaEmail as Spy;
+
+        registerViaEmail.and.returnValue(of(new Performer()));
 
 
         const [emailStub, passwordStub] = ['email', 'password'];
@@ -133,8 +159,8 @@ describe('PerformerRegistrationDialogComponent', () => {
 
         component.onFormSubmit();
 
-        expect(createUserSpy.calls.any()).toBeTruthy('#createUser() is not called');
+        expect(registerViaEmail.calls.any()).toBeTruthy('#createUser() is not called');
 
-        expect(createUserSpy.calls.first().args[0]).toEqual(expectedPerformer);
+        expect(registerViaEmail.calls.first().args[0]).toEqual(expectedPerformer);
     });
 });

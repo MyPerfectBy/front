@@ -1,47 +1,60 @@
-import {Component, HostBinding, OnInit} from '@angular/core';
+import {Component, HostBinding, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
+import {MatDialogRef} from '@angular/material';
+
 // rxjs
-import {Subject} from 'rxjs';
-import {tap} from 'rxjs/operators';
+import {pipe, Subject} from 'rxjs';
+import {takeUntil, tap} from 'rxjs/operators';
 // models
 import {Performer} from '../../../../domain/models/user.model';
 // services
-import {UserService} from '../../../../domain/services/user.service';
+import {RegistrationService} from '../../services/registration.service';
 
 @Component({
     selector: 'app-performer-registration-dialog',
     templateUrl: './performer-registration-dialog.component.html',
     styleUrls: ['./performer-registration-dialog.component.scss']
 })
-export class PerformerRegistrationDialogComponent implements OnInit {
+export class PerformerRegistrationDialogComponent implements OnInit, OnDestroy {
 
     formGroup: FormGroup;
 
     isProgressVisible$ = new Subject<boolean>();
 
+    private destroy$ = new Subject();
+
     @HostBinding('class.app-dialog') private isDefaultClassUsed = true;
 
-    constructor(private userService: UserService) {
+    @ViewChild('successMessageTemplate') private successMessageTemplate: TemplateRef<any>;
+
+    constructor(private matDialogRef: MatDialogRef<PerformerRegistrationDialogComponent>,
+                private registrationService: RegistrationService) {
     }
 
-    onFormSubmit() {
+    onFormSubmit(): void {
 
-        const performer = new Performer();
+        const user = new Performer();
 
-        performer.email = this.formGroup.get('emailCtrl').value;
+        user.email = this.formGroup.get('emailCtrl').value;
 
-        performer.password = this.formGroup.get('passwordCtrl').value;
+        user.password = this.formGroup.get('passwordCtrl').value;
 
         this.showProgress();
 
-        this.userService.createUser(performer)
-            .then(() => {
-            })
-            .catch(() => {
+        this.registrationService.registerViaEmail(user).pipe(
+            pipe(
+                takeUntil(this.destroy$)
+            )
+        ).subscribe(
+            (performer: Performer) => {
+
+                this.matDialogRef.close(performer);
+            },
+            () => {
 
                 this.hideProgress();
-            })
-        ;
+            }
+        );
     }
 
     private hideProgress(): void {
@@ -82,9 +95,18 @@ export class PerformerRegistrationDialogComponent implements OnInit {
         this.isProgressVisible$.next(true);
     }
 
+// lifecycle hooks -------------------------------------------------------------------------------------------------------------------------
+
     ngOnInit() {
 
         this.initializeForm();
+    }
+
+    ngOnDestroy(): void {
+
+        this.destroy$.next();
+
+        this.destroy$.unsubscribe();
     }
 }
 

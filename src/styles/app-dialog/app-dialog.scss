@@ -1,56 +1,58 @@
 .app-dialog {
-  background-color: white;
+    background-color: white;
+    display: block;
+    position: relative;
 }
 
 .app-dialog-form {
-  padding: 16px 12px;
+    padding: 16px 12px;
 }
 
 .app-dialog-form__actions {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 .app-dialog-form__field {
 
-  &.mat-form-field {
-    display: block;
+    &.mat-form-field {
+        display: block;
 
-    &:not(:first-child) {
-      margin-top: 8px;
+        &:not(:first-child) {
+            margin-top: 8px;
+        }
     }
-  }
 }
 
 .app-dialog-header {
-  align-items: center;
-  display: flex;
-  height: 40px;
+    align-items: center;
+    display: flex;
+    height: 40px;
 }
 
 .app-dialog-header__action {
-  margin-left: auto;
+    margin-left: auto;
 }
 
 .app-dialog-header__title {
-  padding: 0 16px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+    padding: 0 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 
 .app-dialog-footer {
-  display: flex;
+    display: flex;
 }
 
 .app-dialog-footer__actions {
-  display: flex;
-  margin-left: auto;
+    display: flex;
+    margin-left: auto;
 }
 
 .app-dialog-footer__action {
 
-  &:not(:first-child) {
-    margin-left: 20px;
-  }
+    &:not(:first-child) {
+        margin-left: 20px;
+    }
 }

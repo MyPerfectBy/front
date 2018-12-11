@@ -3,6 +3,7 @@
 @import url(~fullpage.js/dist/fullpage.min.css);
 
 @import "styles/app-dialog/app-dialog.scss";
+@import "styles/app-dialog/app-dialog-overlay.scss";
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

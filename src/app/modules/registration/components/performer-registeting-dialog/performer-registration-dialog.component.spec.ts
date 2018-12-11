@@ -7,6 +7,9 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import createSpyObj = jasmine.createSpyObj;
 import Spy = jasmine.Spy;
 
+// rxjs
+import {take} from 'rxjs/operators';
+
 // model
 import {Performer} from '../../../../domain/models/user.model';
 // services
@@ -65,6 +68,47 @@ describe('PerformerRegistrationDialogComponent', () => {
     it('should create', () => {
 
         expect(component).toBeTruthy();
+    });
+
+    it('should show progress during registration', (done: DoneFn) => {
+
+        const createUserSpy: Spy = userServiceSpy.createUser as Spy;
+
+        createUserSpy.and.returnValue(new Promise(null));
+
+
+        component.isProgressVisible$.pipe(
+            take(1)
+        ).subscribe(
+            (isProgressVisible: boolean) => {
+
+                expect(isProgressVisible).toBeTruthy();
+
+                done();
+            }
+        );
+
+        component.onFormSubmit();
+    });
+
+    it('should hide progress is registration is rejected', (done: DoneFn) => {
+
+        const createUserSpy: Spy = userServiceSpy.createUser as Spy;
+
+        createUserSpy.and.returnValue(Promise.reject());
+
+        component.onFormSubmit();
+
+        component.isProgressVisible$.pipe(
+            take(1)
+        ).subscribe(
+            (isProgressVisible: boolean) => {
+
+                expect(isProgressVisible).toBeFalsy();
+
+                done();
+            }
+        );
     });
 
     it('should create user on form submit', () => {

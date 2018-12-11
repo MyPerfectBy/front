@@ -2,6 +2,9 @@
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 @import url(~fullpage.js/dist/fullpage.min.css);
 
+// fonts
+@import "assets/fonts/ProximaNova/stylesheet.css";
+
 @import "styles/app-dialog/app-dialog.scss";
 
 html, body { height: 100%; }

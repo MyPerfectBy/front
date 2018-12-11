@@ -1,13 +1,83 @@
-.section {
-  text-align: center;
-  font-size: 3em;
+.page-container {
+  position: relative;
+  height: 100%;
+  background: linear-gradient(to right, #ee6e9f, #ee8d6c);
+
 }
 
-.section_1 {
-  background: url("../../../../../assets/images/promo1.jpg") center fixed no-repeat;
-  background-size: 100%;
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6vh 17.35% 10vh;
 }
 
-.registrationBtn {
-  background: aliceblue;
+.logo {
+  display: flex;
+  flex: 1;
+  font-family: Proxima Nova Th;
+  font-weight: 800;
+  font-size: 2vw;
+  text-transform: uppercase;
+  color: white;
+}
+
+.log-in {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+
+  font-family: Proxima Nova Th;
+  font-weight: 800;
+  font-size: 1.11vw;
+  color: white;
+}
+
+.log-in__cursor {
+  cursor: pointer;
+}
+
+
+.main-content {
+  height: 100%;
+  padding: 0 17.35% 5vh
+}
+
+.typing-text {
+  font-size: 4.4vw;
+  font-weight: 300;
+  line-height: 6.2vw;
+  margin-bottom: 5vh;
+  height: 23.92vw;
+}
+
+.typing-text__font {
+  font-family: Proxima Nova Th;
+  font-weight: 800;
+  color: white;
+}
+
+.fibery-sign-in-btn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sign-in {
+  background-color: white;
+  border-radius: 5px;
+}
+
+.sign-in__btn {
+  font-family: Proxima Nova Th;
+  font-weight: 800;
+  color: #ee6e9f;
+  font-size: 2vw;
+  padding: 2vh 4vh 3vh;
+
+  &:hover {
+    color: #ee8d6c;
+  }
+  transition: color 0.2s;
 }

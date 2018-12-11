@@ -41,6 +41,8 @@ export class AuthorizationDialogComponent implements OnInit {
         });
     }
 
+    onFormSubmit(){}
+
     ngOnInit() {
         this.initializeForm();
     }

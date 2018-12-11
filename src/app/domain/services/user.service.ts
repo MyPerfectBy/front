@@ -1,21 +1,28 @@
-import {Performer, User} from '../models/user.model';
-import {Feedback} from '../models/feedback.model';
-import {Photo} from '../models/photo.model';
-import {Social} from '../models/social.model';
+// models
+import {User} from '../models/user.model';
+// service
 import {SecurityService} from './security.service';
-import {ApiService} from './api.service';
+import {StorageService} from './storage.service';
 
 export class UserService  {
 
-    constructor(private securityService: SecurityService, private apiService: ApiService) {
+    constructor(private securityService: SecurityService, private storageService: StorageService) {
 
     }
 
     createUser(user: User): Promise<User> {
 
-        this.securityService.canCreateUser(user);
+        return this.securityService.canCreateUser(user)
+            .then((isPermitted: boolean) => {
 
-        return this.apiService.createUser(user);
+                if (isPermitted) {
+
+                    return this.storageService.createUser(user);
+                } else {
+
+                    throw new Error('Creating of user is not permitted');
+                }
+            });
     }
 
     // editUser(user: User): Promise<User> {}

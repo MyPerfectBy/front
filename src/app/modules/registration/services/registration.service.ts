@@ -1,25 +1,24 @@
 import {Injectable} from '@angular/core';
 
 // rxjs
-import {from, Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
+import {delay} from 'rxjs/operators';
 
 // models
 import {User} from '../../../domain/models/user.model';
-// modules
-import {RegistrationModule} from '../registration.module';
-
-import {UserService} from '../../../domain/services/user.service';
 
 @Injectable({
-    providedIn: RegistrationModule
+    providedIn: 'root'
 })
 export class RegistrationService {
 
-    constructor(private userService: UserService) {
+    constructor() {
     }
 
     registerViaEmail<T extends User>(user: T): Observable<T> {
 
-        return from(this.userService.createUser(user)) as Observable<T>;
+        return of(user).pipe(
+            delay(2000)
+        );
     }
 }

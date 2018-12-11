@@ -10,7 +10,7 @@ import Spy = jasmine.Spy;
 import {PromoComponent} from './promo.component';
 import {
     PerformerRegistrationDialogComponent
-} from '../../../registration/components/performer-registeting-dialog/performer-registration-dialog.component';
+} from '../../../registration/components/performer-registration-dialog/performer-registration-dialog.component';
 
 
 describe('PromoComponent', () => {

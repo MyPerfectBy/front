@@ -8,12 +8,12 @@ import {
     MatButtonModule,
     MatDatepickerModule, MatDialogModule,
     MatFormFieldModule, MatIconModule,
-    MatInputModule, MatProgressBarModule, MatProgressSpinnerModule,
+    MatInputModule, MatProgressSpinnerModule,
     MatSelectModule
 } from '@angular/material';
 
 // components
-import { PerformerRegistrationDialogComponent } from './components/performer-registeting-dialog/performer-registration-dialog.component';
+import { PerformerRegistrationDialogComponent } from './components/performer-registration-dialog/performer-registration-dialog.component';
 
 @NgModule({
   declarations: [PerformerRegistrationDialogComponent],

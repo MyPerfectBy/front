@@ -1,0 +1,17 @@
+@mixin scrollbar() {
+
+    &::-webkit-scrollbar {
+        background-color: rgba(192, 192, 192, 0.2);
+        border-radius: 2px;
+        height: 4px;
+        width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(192, 192, 192, 0.35);
+        border-radius: 2px;
+    }
+}
+
+
+

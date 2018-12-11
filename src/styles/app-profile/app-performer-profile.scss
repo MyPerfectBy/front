@@ -1,0 +1,87 @@
+.app-performer-profile__summary {
+  width: 100%;
+  background: linear-gradient(to right, #ed6ea0, #ec8c69);
+  padding: 50px 30%;
+  box-sizing: border-box;
+}
+
+.app-performer-profile__summary-header-line {
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.app-performer-profile__avatar-img {
+
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+.app-performer-profile__statistic {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.app-performer-profile__statistic-item {
+
+  padding-left: 40px;
+  color: white;
+  text-align: center;
+
+}
+
+.app-performer-profile__statistic-action {
+
+  margin-top: 30px;
+  padding-left: 40px;
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+
+.app-performer-profile__feedback-button {
+
+  width: 100%;
+  position: relative;
+  background-color: Transparent;
+  border: 2px solid white;
+  border-radius: 3px;
+  color: white;
+  padding: 10px 32px;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+
+.app-performer-profile__feedback-button:active {
+
+  position: relative;
+  top: 1px;
+}
+
+.app-performer-profile__title {
+
+  color: white;
+  font-size: 26px;
+  margin-top: 16px;
+}
+
+.app-performer-profile__description {
+
+  color: white;
+  font-size: 16px;
+  margin-top: 16px;
+}
+
+.app-performer-profile__details {
+
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 50px 29%;
+  box-sizing: border-box;
+}

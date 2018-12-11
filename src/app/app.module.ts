@@ -29,6 +29,7 @@ import {UserService} from './domain/services/user.service';
     providers: [
         {
             provide: UserService,
+            useClass: UserService,
             deps: []
         },
     ],

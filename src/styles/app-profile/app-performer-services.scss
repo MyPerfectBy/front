@@ -4,23 +4,30 @@
 
 .app-performer-profile__services-title {
 
-  font-weight: 500;
-  font-size: 20px;
+  font-weight: 700;
+  font-size: 28px;
   margin-bottom: 20px;
+  color: rgba(0, 0, 0, 0.7);
 }
 
 .app-performer-profile__services-info {
 
+  font-size: 20px;
   margin-bottom: 20px;
 }
 
 .app-performer-profile__services-item {
   display: flex;
-  width: 300px;
+  width: 100%;
   justify-content: space-between;
-  margin-bottom: 10px;
+  padding: 12px 5px;
+  font-size: 20px;
+
+  &:nth-child(odd) {
+    background-color: #f8f9fb;;
+  }
 }
 
 .app-performer-profile__services-item-title {
-  font-style: italic;
+
 }

@@ -20,13 +20,13 @@ export class ProfileComponent implements OnInit {
 
         this.performer.id = 1;
 
-        this.performer.username = 'Джессика Джонс';
+        this.performer.username = 'Екатерина Петропавлоская';
 
         this.performer.avatar = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWK6h04ZhG5C_KQ5SPw6YedTbr-tppHBJ2INJSR3wIXbRsXKND6g';
 
         this.performer.address = 'ул.Сторожовская д.6';
 
-        this.performer.description = 'Пара слов о себе';
+        this.performer.description = 'Я профессионал своего дела, ногти для меня как холст, на них я творю и создаю шедевры';
 
         this.performer.viewsCount = 27161;
 
@@ -38,7 +38,9 @@ export class ProfileComponent implements OnInit {
             photo, photo, photo, photo, photo, photo, photo, photo, photo];
 
         this.performer.services = [{id: 1, title: 'Маникюр классический', price: 25} as Service,
-            {id: 1, title: 'Маникюр неебический', price: 108} as Service];
+            {id: 1, title: 'Маникюр неебический', price: 108} as Service,
+            {id: 1, title: 'Завивка волос', price: 1018} as Service,
+            {id: 1, title: 'Праздничный торт', price: 5} as Service];
     }
 
 }

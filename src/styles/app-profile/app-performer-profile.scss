@@ -1,3 +1,9 @@
+.app-performer-profile {
+
+  font-family: Proxima Nova Rg;
+
+}
+
 .app-performer-profile__summary {
   width: 100%;
   background: linear-gradient(to right, #ed6ea0, #ec8c69);
@@ -28,12 +34,16 @@
   padding-left: 40px;
   color: white;
   text-align: center;
+}
 
+.app-performer-profile__statistic-item-value {
+
+  font-size: 22px;
 }
 
 .app-performer-profile__statistic-action {
 
-  margin-top: 30px;
+  margin-top: -22px;
   padding-left: 40px;
   grid-column-start: 1;
   grid-column-end: 4;
@@ -53,8 +63,15 @@
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+  font-weight: 700;
   cursor: pointer;
   transition-duration: 0.4s;
+
+  &:hover {
+    background: linear-gradient(to left, #ed6ea0, #ec8c69);
+  }
+
+  transition: color 0.2s;
 }
 
 .app-performer-profile__feedback-button:active {
@@ -66,14 +83,15 @@
 .app-performer-profile__title {
 
   color: white;
-  font-size: 26px;
+  font-size: 44px;
+  font-weight: 600;
   margin-top: 16px;
 }
 
 .app-performer-profile__description {
 
   color: white;
-  font-size: 16px;
+  font-size: 20px;
   margin-top: 16px;
 }
 
@@ -84,4 +102,5 @@
   flex-direction: column;
   padding: 50px 29%;
   box-sizing: border-box;
+  color: black;
 }

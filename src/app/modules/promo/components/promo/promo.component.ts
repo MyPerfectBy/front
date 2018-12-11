@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material';
 
 import {
-    PerformerRegistrationDialogComponent, PerformerRegistrationData
+    PerformerRegistrationDialogComponent
 } from '../../../registration/components/performer-registeting-dialog/performer-registration-dialog.component';
 
 @Component({
@@ -25,18 +25,9 @@ export class PromoComponent implements OnInit {
         };
     }
 
-    openPerformerRegistrationDialog() {
-        const config = {};
+    openPerformerRegistrationDialog(): void {
 
-        const dialogRef = this.dialogService.open(PerformerRegistrationDialogComponent, config);
-
-        dialogRef.afterClosed().subscribe((registrationData: PerformerRegistrationData) => {
-
-            if (!registrationData) { return; }
-
-            console.log('send info for creating performer', registrationData);
-        });
-
+        this.dialogService.open(PerformerRegistrationDialogComponent);
     }
 
     getRef(fullPageRef) {

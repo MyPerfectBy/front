@@ -12,7 +12,7 @@ export class UserService  {
 
     createUser<T extends User>(user: T): Promise<T> {
 
-        return this.securityService.canCreateUser(user)
+        return this.securityService.canCreateUser()
             .then((isPermitted: boolean) => {
 
                 if (isPermitted) {

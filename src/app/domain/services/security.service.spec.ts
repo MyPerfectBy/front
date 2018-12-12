@@ -34,7 +34,7 @@ describe('SecurityService', () => {
         getUserSpy.and.returnValue(Promise.resolve(null));
 
 
-        securityService.canCreateUser({} as User).then((isPermitted: boolean): void => {
+        securityService.canCreateUser().then((isPermitted: boolean): void => {
 
             expect(isPermitted).toBeTruthy();
 

@@ -8,7 +8,6 @@ $portfolioWidth: 3 * $portfolioItemHeight;
   font-weight: 700;
   font-size: 28px;
   margin-bottom: 20px;
-  padding-left: 20px;
   color: rgba(0, 0, 0, 0.7);
 }
 
@@ -17,8 +16,9 @@ $portfolioWidth: 3 * $portfolioItemHeight;
   display: block;
   direction: rtl;
   width: calc(#{$portfolioItemHeight} + 20px);
-  max-height: $portfolioWidth + 5px;
+  max-height: 100vw*0.4;
   margin: 0;
+  padding: 0;
   overflow-y: auto;
   overflow-x: hidden;
   transform: rotate(-90deg) translateY(-$portfolioItemHeight);
@@ -41,7 +41,7 @@ $portfolioWidth: 3 * $portfolioItemHeight;
   & > div {
     width: $portfolioItemHeight;
     height: $portfolioItemHeight;
-    padding-left: 4px;
+    padding-left: 0;
     box-sizing: border-box;
   }
 }
@@ -54,6 +54,23 @@ $portfolioWidth: 3 * $portfolioItemHeight;
 }
 
 .app-performer-profile__portfolio_wrapped {
-
+  overflow: hidden;
+  padding: 0;
   height: 300px;
+}
+
+@media screen and (max-width: 1200px) {
+
+  .app-performer-profile__portfolio {
+
+    max-height: 100vw*0.6;
+  }
+}
+
+@media screen and (max-width: 720px) {
+
+  .app-performer-profile__portfolio {
+
+    max-height: 100vw*0.9;
+  }
 }

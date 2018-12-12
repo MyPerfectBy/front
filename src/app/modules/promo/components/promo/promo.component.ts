@@ -31,8 +31,6 @@ export class PromoComponent implements OnInit {
     config: any;
     fullpage_api: any;
 
-    vkAuthorizeUrl = 'https://oauth.vk.com/authorize?client_id=6779491&display=popup&redirect_uri=http://dev.makeperfect.by&scope=email&response_type=code';
-
     private querySubscription: Subscription;
 
     constructor(private dialogService: MatDialog, private route: ActivatedRoute, private authorizationService: AuthorizationService) {

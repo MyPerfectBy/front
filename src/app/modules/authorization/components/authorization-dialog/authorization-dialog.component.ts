@@ -23,7 +23,7 @@ export class AuthorizationDialogComponent implements OnInit, OnDestroy {
 
     private destroy$ = new Subject();
 
-
+    vkAuthorizeUrl = 'https://oauth.vk.com/authorize?client_id=6779491&display=popup&redirect_uri=http://dev.makeperfect.by&scope=email&response_type=code';
 
     @HostBinding('class.app-dialog') private isDefaultClassUsed = true;
 

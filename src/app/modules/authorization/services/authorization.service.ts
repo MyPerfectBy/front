@@ -2,8 +2,8 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 
 // rxjs
-import {Observable, of} from 'rxjs';
-import {catchError, mapTo} from 'rxjs/operators';
+import {Observable} from 'rxjs';
+import {mapTo} from 'rxjs/operators';
 
 
 @Injectable({
@@ -24,11 +24,7 @@ export class AuthorizationService {
         formData.append('password', password);
 
         return this.httpClient.post(this.url, formData).pipe(
-            mapTo(true),
-            catchError(() => {
-
-                return of(false);
-            })
+            mapTo(true)
         );
     }
 }

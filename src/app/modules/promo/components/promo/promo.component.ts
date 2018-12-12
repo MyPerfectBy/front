@@ -1,12 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material';
 
+// components
+import {
+    AuthorizationDialogComponent
+} from '../../../authorization/components/authorization-dialog/authorization-dialog.component';
 import {
     PerformerRegistrationDialogComponent
 } from '../../../registration/components/performer-registration-dialog/performer-registration-dialog.component';
-import {
-    AuthorizationDialogComponent
-} from '../../../authorization/authorization/components/authorization-dialog/authorization-dialog.component';
 
 @Component({
     selector: 'app-promo',
@@ -38,7 +39,7 @@ export class PromoComponent implements OnInit {
 
         const dialogRef = this.dialogService.open(AuthorizationDialogComponent, config);
 
-        dialogRef.afterClosed().subscribe((data) => {
+        dialogRef.afterClosed().subscribe(() => {
         });
     }
 

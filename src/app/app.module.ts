@@ -7,9 +7,9 @@ import {AppComponent} from './app.component';
 import {PromoModule} from './modules/promo/promo.module';
 
 // modules
+import {AuthorizationModule} from './modules/authorization/authorization.module';
 import {HeaderComponent} from './components/header/header.component';
 import {RegistrationModule} from './modules/registration/registration.module';
-import {AuthorizationModule} from './modules/authorization/authorization/authorization.module';
 // services
 import {UserService} from './domain/services/user.service';
 
@@ -20,13 +20,14 @@ import {UserService} from './domain/services/user.service';
     ],
     imports: [
         BrowserModule,
-        AppRoutingModule,
         BrowserAnimationsModule,
 
+        AppRoutingModule,
+
         // Application Modules
+        AuthorizationModule,
         PromoModule,
-        RegistrationModule,
-        AuthorizationModule
+        RegistrationModule
   ],
   providers: [
         {

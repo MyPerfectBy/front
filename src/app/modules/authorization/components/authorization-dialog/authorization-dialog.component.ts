@@ -2,6 +2,7 @@ import {Component, HostBinding, OnInit} from '@angular/core';
 import {MatDialogRef, MatIconRegistry} from '@angular/material';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {DomSanitizer} from '@angular/platform-browser';
+import {AuthorizationService} from '../../services/authorization.service';
 
 @Component({
     selector: 'app-authorization-dialog',
@@ -15,7 +16,7 @@ export class AuthorizationDialogComponent implements OnInit {
     @HostBinding('class.app-dialog') private isDefaultClassUsed = true;
 
     constructor(private dialogRef: MatDialogRef<AuthorizationDialogComponent>, iconRegistry: MatIconRegistry,
-                sanitizer: DomSanitizer) {
+                sanitizer: DomSanitizer, private authorizationService: AuthorizationService) {
         iconRegistry.addSvgIcon(
             'vk',
             sanitizer.bypassSecurityTrustResourceUrl('assets/images/vk.svg')
@@ -41,7 +42,14 @@ export class AuthorizationDialogComponent implements OnInit {
         });
     }
 
-    onFormSubmit() {}
+    onFormSubmit() {
+
+        const login: string = this.formGroup.get('emailCtrl').value;
+
+        const password: string = this.formGroup.get('passwordCtrl').value;
+
+        this.authorizationService.authorizeByForm(login, password).pipe().subscribe(console.log);
+    }
 
     ngOnInit() {
         this.initializeForm();

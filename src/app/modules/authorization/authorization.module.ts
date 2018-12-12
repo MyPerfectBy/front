@@ -1,7 +1,8 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {AuthorizationDialogComponent} from './components/authorization-dialog/authorization-dialog.component';
+import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 import {
     MatButtonModule,
     MatDatepickerModule,
@@ -11,11 +12,17 @@ import {
     MatInputModule,
     MatSelectModule
 } from '@angular/material';
-import {HttpClientModule} from '@angular/common/http';
+
+// components
+import {AuthorizationDialogComponent} from './components/authorization-dialog/authorization-dialog.component';
 
 @NgModule({
-    declarations: [AuthorizationDialogComponent],
-    entryComponents: [AuthorizationDialogComponent],
+    declarations: [
+        AuthorizationDialogComponent
+    ],
+    entryComponents: [
+        AuthorizationDialogComponent
+    ],
     imports: [
         CommonModule,
         FormsModule,

@@ -34,21 +34,6 @@ describe('UserService', () => {
         expect(userService).toBeTruthy();
     });
 
-    it('should check permission when create user', () => {
-
-        const canCreateUserSpy: Spy = securityServiceSpy.canCreateUser as Spy;
-
-        canCreateUserSpy.and.returnValue(Promise.resolve(true));
-
-        const userStub: User = {} as User;
-
-        userService.createUser(userStub)
-            .then();
-
-
-        expect(canCreateUserSpy.calls.any()).toBeTruthy();
-    });
-
     it('should reject creating of a user if it is not permitted', (done: DoneFn) => {
 
         const canCreateUserSpy: Spy = securityServiceSpy.canCreateUser as Spy;

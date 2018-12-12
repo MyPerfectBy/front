@@ -11,12 +11,11 @@ import {catchError, mapTo} from 'rxjs/operators';
 })
 export class AuthorizationService {
 
-    readonly url = 'http://dev-back.makeperfect.by/login_form';
+    readonly url = 'http://dev-back.makeperfect.by/login';
 
     constructor(private httpClient: HttpClient) { }
 
     authorizeByForm(login: string, password: string): Observable<boolean> {
-
 
         const formData = new FormData();
 

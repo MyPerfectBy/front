@@ -23,10 +23,12 @@ export class AuthorizationDialogComponent implements OnInit, OnDestroy {
 
     private destroy$ = new Subject();
 
+
+
     @HostBinding('class.app-dialog') private isDefaultClassUsed = true;
 
     constructor(private dialogRef: MatDialogRef<AuthorizationDialogComponent>, iconRegistry: MatIconRegistry,
-                sanitizer: DomSanitizer, private authorizationService: AuthorizationService) {
+                sanitizer: DomSanitizer, private authorizationService: AuthorizationService, ) {
 
         iconRegistry.addSvgIcon(
             'vk',

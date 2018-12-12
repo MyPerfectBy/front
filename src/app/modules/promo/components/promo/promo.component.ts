@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 import {MatDialog} from '@angular/material';
+import {Subscription} from 'rxjs';
 
 // components
 import {
@@ -8,6 +10,16 @@ import {
 import {
     PerformerRegistrationDialogComponent
 } from '../../../registration/components/performer-registration-dialog/performer-registration-dialog.component';
+
+
+// services
+import {
+    AuthorizationService
+} from '../../../authorization/services/authorization.service';
+import {delay} from 'rxjs/operators';
+
+
+
 
 @Component({
     selector: 'app-promo',
@@ -19,7 +31,11 @@ export class PromoComponent implements OnInit {
     config: any;
     fullpage_api: any;
 
-    constructor(private dialogService: MatDialog) {
+    vkAuthorizeUrl = 'https://oauth.vk.com/authorize?client_id=6779491&display=popup&redirect_uri=http://dev.makeperfect.by&scope=email&response_type=code';
+
+    private querySubscription: Subscription;
+
+    constructor(private dialogService: MatDialog, private route: ActivatedRoute, private authorizationService: AuthorizationService) {
 
         this.config = {
 
@@ -27,6 +43,19 @@ export class PromoComponent implements OnInit {
             navigation: true,
 
         };
+
+        this.querySubscription = route.queryParams.subscribe(
+            (queryParam: any) => {
+                const code = queryParam['code'];
+
+                if (code) {
+
+                    this.authorizationService.authorizeByVk(code).pipe(
+                        delay(10000)
+                    ).subscribe((result) => console.log(result) );
+                }
+            }
+        );
     }
 
     openPerformerRegistrationDialog(): void {

@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 
 // rxjs
@@ -32,7 +32,11 @@ export class AuthorizationService {
 
     authorizeByVk(code: string) {
 
-        return this.httpClient.get(this.authorizeByVkUrl + code).pipe(
+        let headers: HttpHeaders = new HttpHeaders();
+
+        headers = headers.append('Access-Control-Allow-Origin', 'true');
+
+        return this.httpClient.get(this.authorizeByVkUrl + code, {headers}).pipe(
             mapTo(true)
         );
     }

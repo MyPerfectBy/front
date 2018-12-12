@@ -31,9 +31,9 @@ export class AuthorizationDialogComponent implements OnInit {
     }
 
     private initializeForm() {
-        const emailCtrl = new FormControl(null, [Validators.required, Validators.email]);
+        const emailCtrl = new FormControl(null, [Validators.required]);
 
-        const passwordCtrl = new FormControl(null, [Validators.required, Validators.minLength(6)]);
+        const passwordCtrl = new FormControl(null, [Validators.required]);
 
         this.formGroup = new FormGroup({
             emailCtrl,
@@ -41,7 +41,7 @@ export class AuthorizationDialogComponent implements OnInit {
         });
     }
 
-    onFormSubmit(){}
+    onFormSubmit() {}
 
     ngOnInit() {
         this.initializeForm();

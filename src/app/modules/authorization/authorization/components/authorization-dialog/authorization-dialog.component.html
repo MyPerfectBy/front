@@ -20,13 +20,21 @@
 </div>
 <mat-divider></mat-divider>
 
-<form class="app-dialog-form" [formGroup]="formGroup" (ngSubmit)="onFormSubmit()" autocomplete="off">
+<form class="app-dialog-form"
+      id="loginForm"
+      autocomplete="off"
+      [formGroup]="formGroup"
+      (ngSubmit)="onFormSubmit()">
 
     <mat-form-field class="app-dialog-form__field">
 
-        <input matInput placeholder="Ваш email" formControlName="emailCtrl">
+        <input matInput placeholder="Ваш email или имя пользователя" formControlName="emailCtrl">
 
-        <mat-error>Введите корректный email</mat-error>
+        <mat-error>
+
+            Обязательное поле
+
+        </mat-error>
 
     </mat-form-field>
 
@@ -34,24 +42,30 @@
 
         <input matInput type="password" placeholder="Ваш пароль" formControlName="passwordCtrl">
 
-        <mat-error>Введите корректный пароль</mat-error>
+        <mat-error>
+
+            Обязательное поле
+
+        </mat-error>
 
     </mat-form-field>
 
-    <div class="app-dialog-footer app-dialog-form__actions">
+</form>
 
-        <div class="app-dialog-footer__actions">
+<div class="app-dialog-footer app-dialog-form__actions">
 
-            <button mat-raised-button
-                    color="primary"
-                    [disabled]="formGroup.invalid">
+    <div class="app-dialog-footer__actions">
 
-                ВХОД
+        <button form="loginForm"
+                mat-raised-button
+                color="primary"
+                [disabled]="formGroup.invalid">
 
-            </button>
+            ВХОД
 
-        </div>
+        </button>
 
     </div>
-</form>
+
+</div>
 

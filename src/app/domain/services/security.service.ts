@@ -1,27 +1,37 @@
-import {Performer, User} from '../models/user.model';
-import {Feedback} from '../models/feedback.model';
-import {Photo} from '../models/photo.model';
-import {Social} from '../models/social.model';
+// models
+import {User} from '../models/user.model';
+// services
+import {AuthService} from './auth.service';
 
-export interface SecurityService {
+export class SecurityService {
 
-    canCreateUser(user: User): Promise<boolean>;
+    constructor(private authService: AuthService) {
+    }
 
-    canAddPerformerFeedback(user: User): Promise<boolean>;
+    canCreateUser(): Promise<boolean> {
 
-    canEditPerformerFeedback(performer: Performer, feedback: Feedback): Promise<boolean>;
+        return this.authService.getUser()
+            .then((authUser: User): boolean => {
 
-    canDeletePerformerFeedback(performer: Performer, feedback: Feedback): Promise<boolean>;
+                return !authUser;
+            });
+    }
 
-    canAddPerformerPhoto(performer: Performer, photo: Photo): Promise<boolean>;
-
-    canEditPerformerPhoto(performer: Performer, photo: Photo): Promise<boolean>;
-
-    canDeletePerformerPhoto(performer: Performer, photo: Photo): Promise<boolean>;
-
-    canAddPerformerSocial(performer: Performer, social: Social): Promise<boolean>;
-
-    canEditPerformerSocial(performer: Performer, social: Social): Promise<boolean>;
-
-    canDeletePerformerSocial(performer: Performer, social: Social): Promise<boolean>;
+    // canAddPerformerFeedback(user: User): Promise<boolean>;
+    //
+    // canEditPerformerFeedback(performer: Performer, feedback: Feedback): Promise<boolean>;
+    //
+    // canDeletePerformerFeedback(performer: Performer, feedback: Feedback): Promise<boolean>;
+    //
+    // canAddPerformerPhoto(performer: Performer, photo: Photo): Promise<boolean>;
+    //
+    // canEditPerformerPhoto(performer: Performer, photo: Photo): Promise<boolean>;
+    //
+    // canDeletePerformerPhoto(performer: Performer, photo: Photo): Promise<boolean>;
+    //
+    // canAddPerformerSocial(performer: Performer, social: Social): Promise<boolean>;
+    //
+    // canEditPerformerSocial(performer: Performer, social: Social): Promise<boolean>;
+    //
+    // canDeletePerformerSocial(performer: Performer, social: Social): Promise<boolean>;
 }

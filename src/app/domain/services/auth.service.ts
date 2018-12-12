@@ -1,7 +1,7 @@
 import {User} from '../models/user.model';
 
-export interface AuthService {
+export abstract class AuthService {
 
-    getUser(): Promise<User>;
+    abstract getUser(): Promise<User>;
 }
 

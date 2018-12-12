@@ -38,6 +38,7 @@
 
 .app-performer-profile__statistic-item-value {
 
+  font-weight: 600;
   font-size: 22px;
 }
 
@@ -100,7 +101,70 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 50px 29%;
+  padding: 50px 30%;
   box-sizing: border-box;
   color: black;
+}
+
+@media screen and (max-width: 1200px) {
+
+  .app-performer-profile__details{
+
+    padding: 50px 20%;
+  }
+
+  .app-performer-profile__summary {
+
+    padding: 50px 20%;
+  }
+
+}
+
+@media screen and (max-width: 720px) {
+
+  .app-performer-profile__details{
+
+    padding: 50px 5%;
+  }
+
+  .app-performer-profile__summary {
+
+    padding: 50px 5%;
+  }
+
+}
+
+@media screen and (max-width: 550px) {
+
+  .app-performer-profile__summary-header-line {
+
+    flex-direction: column-reverse;
+  }
+
+  .app-performer-profile__statistic-item {
+
+    text-align: left;
+
+    &:first-child {
+
+      padding-left: 0;
+    }
+  }
+
+  .app-performer-profile__statistic-action {
+
+    margin-top: 10px;
+    padding-left: 0;
+  }
+
+  .app-performer-profile__avatar {
+
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .app-performer-profile__title {
+
+    font-size: 36px;
+  }
 }

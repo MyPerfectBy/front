@@ -1,0 +1,15 @@
+.app-dialog-footer {
+    display: flex;
+}
+
+.app-dialog-footer__actions {
+    display: flex;
+    margin-left: auto;
+}
+
+.app-dialog-footer__action {
+
+    &:not(:first-child) {
+        margin-left: 20px;
+    }
+}

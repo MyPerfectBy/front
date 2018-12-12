@@ -1,51 +1,59 @@
 <div class="app-dialog-header">
 
-  <div class="app-dialog-header__title">РЕГИСТРАЦИЯ В КАЧЕСТВЕ МАСТЕРА</div>
+    <div class="app-dialog-header__title">
+
+        РЕГИСТРАЦИЯ В КАЧЕСТВЕ МАСТЕРА
+
+    </div>
 
 </div>
 
 
 <form class="app-dialog-form" [formGroup]="formGroup" (ngSubmit)="onFormSubmit()" autocomplete="off">
 
-  <mat-form-field class="app-dialog-form__field">
+    <mat-form-field class="app-dialog-form__field">
 
-    <input matInput placeholder="ваш email" formControlName="emailCtrl">
+        <input matInput placeholder="ваш email" formControlName="emailCtrl">
 
-    <mat-error>Введите настоящий email</mat-error>
+        <mat-error>
 
-  </mat-form-field>
+            Введите настоящий email
 
-  <mat-form-field class="app-dialog-form__field">
+        </mat-error>
 
-    <input matInput type="password" placeholder="пароль" formControlName="passwordCtrl">
+    </mat-form-field>
 
-    <mat-error>Пароль должен состоять минимум из 6 символов</mat-error>
+    <mat-form-field class="app-dialog-form__field">
 
-  </mat-form-field>
+        <input matInput type="password" placeholder="пароль" formControlName="passwordCtrl">
 
-  <mat-form-field class="app-dialog-form__field">
+        <mat-error>Пароль должен состоять минимум из 6 символов</mat-error>
 
-    <input matInput type="password"  placeholder="повторите пароль" formControlName="repeatPasswordCtrl">
+    </mat-form-field>
 
-    <mat-error>Пароли должны совпадать и состоять минимум из 6 символов</mat-error>
+    <mat-form-field class="app-dialog-form__field">
 
-  </mat-form-field>
+        <input matInput type="password" placeholder="повторите пароль" formControlName="repeatPasswordCtrl">
 
-  <div class="app-dialog-footer app-dialog-form__actions">
+        <mat-error>Пароли должны совпадать и состоять минимум из 6 символов</mat-error>
 
-    <div class="app-dialog-footer__actions">
+    </mat-form-field>
 
-      <button mat-raised-button
-              color="primary"
-              [disabled]="formGroup.invalid">
+    <div class="app-dialog-footer app-dialog-form__actions">
 
-        ЗАРЕГИСТРИРОВАТЬСЯ
+        <div class="app-dialog-footer__actions">
 
-      </button>
+            <button mat-raised-button
+                    color="primary"
+                    [disabled]="formGroup.invalid">
+
+                ЗАРЕГИСТРИРОВАТЬСЯ
+
+            </button>
+
+        </div>
 
     </div>
-
-  </div>
 
 </form>
 
@@ -53,11 +61,55 @@
 
     <div class="app-dialog-overlay__spinner">
 
-        <mat-progress-spinner  mode="indeterminate"></mat-progress-spinner>
+        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
 
     </div>
 
 </div>
+
+<ng-template #successMessageTemplate>
+
+    <div class="app-dialog">
+
+        <div class="app-dialog-header">
+
+            <div class="app-dialog-header__title app-dialog-header__title_uppercase">
+
+                Спасибо за регистрацию
+
+            </div>
+
+        </div>
+
+        <div>
+
+            На указанный Вами адрес электронной почты
+
+            <br>
+
+            было отправлено письмо с дальнейшими интрукциями.
+
+        </div>
+
+        <div class="app-dialog-footer app-dialog__footer">
+
+            <div class="app-dialog-footer__actions">
+
+                <button mat-raised-button
+                        color="primary"
+                        (click)="onCloseButtonClick()">
+
+                    Закрыть
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</ng-template>
 
 
 

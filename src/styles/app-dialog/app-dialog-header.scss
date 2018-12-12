@@ -1,0 +1,19 @@
+.app-dialog-header {
+    align-items: center;
+    display: flex;
+    height: 40px;
+}
+
+.app-dialog-header__action {
+    margin-left: auto;
+}
+
+.app-dialog-header__title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.app-dialog-header__title_uppercase{
+    text-transform: uppercase;
+}

@@ -1,6 +1,6 @@
 import {Component, HostBinding, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
-import {MatDialogRef} from '@angular/material';
+import {MatDialog, MatDialogRef} from '@angular/material';
 
 // rxjs
 import {pipe, Subject} from 'rxjs';
@@ -27,8 +27,13 @@ export class PerformerRegistrationDialogComponent implements OnInit, OnDestroy {
 
     @ViewChild('successMessageTemplate') private successMessageTemplate: TemplateRef<any>;
 
-    constructor(private matDialogRef: MatDialogRef<PerformerRegistrationDialogComponent>,
+    constructor(private matDialogRef: MatDialogRef<PerformerRegistrationDialogComponent>, private matDialog: MatDialog,
                 private registrationService: RegistrationService) {
+    }
+
+    onCloseButtonClick(): void {
+
+        this.matDialog.closeAll();
     }
 
     onFormSubmit(): void {
@@ -46,9 +51,9 @@ export class PerformerRegistrationDialogComponent implements OnInit, OnDestroy {
                 takeUntil(this.destroy$)
             )
         ).subscribe(
-            (performer: Performer) => {
+            () => {
 
-                this.matDialogRef.close(performer);
+                this.matDialog.open(this.successMessageTemplate);
             },
             () => {
 

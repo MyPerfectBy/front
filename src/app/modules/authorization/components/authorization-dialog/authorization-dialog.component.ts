@@ -5,7 +5,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 
 // rxjs
 import {Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
+import {delay, takeUntil} from 'rxjs/operators';
 
 // services
 import {AuthorizationService} from '../../services/authorization.service';
@@ -18,6 +18,8 @@ import {AuthorizationService} from '../../services/authorization.service';
 export class AuthorizationDialogComponent implements OnInit, OnDestroy {
 
     formGroup: FormGroup;
+
+    isProgressVisible$ = new Subject<boolean>();
 
     private destroy$ = new Subject();
 
@@ -54,18 +56,23 @@ export class AuthorizationDialogComponent implements OnInit, OnDestroy {
 
     onFormSubmit() {
 
+        this.showProgress();
+
         const login: string = this.formGroup.get('emailCtrl').value;
 
         const password: string = this.formGroup.get('passwordCtrl').value;
 
         this.authorizationService.authorizeByForm(login, password).pipe(
+            delay(10000),
             takeUntil(this.destroy$)
         ).subscribe(
             () => {
 
-                // @todo redirect to profile
+               this.dialogRef.close();
             },
             () => {
+
+                this.hideProgress();
 
                 const passwordCtrl: FormControl = this.formGroup.get('passwordCtrl') as FormControl;
 
@@ -76,6 +83,16 @@ export class AuthorizationDialogComponent implements OnInit, OnDestroy {
         );
     }
 
+    private hideProgress(): void {
+
+        this.isProgressVisible$.next(false);
+    }
+
+    private showProgress(): void {
+
+        this.isProgressVisible$.next(true);
+    }
+
 // lifecycle hooks -------------------------------------------------------------------------------------------------------------------------
 
     ngOnInit() {
@@ -83,6 +100,8 @@ export class AuthorizationDialogComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
+
+        this.isProgressVisible$.unsubscribe();
 
         this.destroy$.next();
 

@@ -9,7 +9,7 @@ import {
     MatDialogModule, MatDividerModule,
     MatFormFieldModule,
     MatIconModule,
-    MatInputModule,
+    MatInputModule, MatProgressSpinnerModule,
     MatSelectModule
 } from '@angular/material';
 
@@ -36,6 +36,7 @@ import {AuthorizationDialogComponent} from './components/authorization-dialog/au
         MatFormFieldModule,
         MatIconModule,
         MatInputModule,
+        MatProgressSpinnerModule,
         MatSelectModule,
         MatDividerModule
     ]

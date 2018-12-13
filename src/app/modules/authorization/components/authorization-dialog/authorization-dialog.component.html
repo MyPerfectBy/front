@@ -1,20 +1,31 @@
-<div class="app-dialog-header" cdkFocusInitial>
+<div class="app-dialog-header">
 
-    <div class="app-dialog-header__title app-dialog-header__title_uppercase"> Вход в «Make Perfect»</div>
+    <div class="app-dialog-header__title app-dialog-header__title_uppercase">
+
+        Вход в «Make Perfect»
+
+    </div>
+
 </div>
 
 <div class="app-dialog-social-networks">
 
     <button mat-icon-button type="button">
+
         <mat-icon svgIcon="google-plus" aria-label="google-plus"></mat-icon>
+
     </button>
 
-    <button mat-icon-button type="button">
+    <a mat-icon-button [href]="vkAuthorizeUrl">
+
         <mat-icon svgIcon="vk" aria-label="VKontakte"></mat-icon>
-    </button>
+
+    </a>
 
     <button mat-icon-button type="button">
+
         <mat-icon svgIcon="odnoklassniki" aria-label="odnoklassniki"></mat-icon>
+
     </button>
 
 </div>
@@ -42,9 +53,15 @@
 
         <input matInput type="password" placeholder="Ваш пароль" formControlName="passwordCtrl">
 
-        <mat-error>
+        <mat-error *ngIf="formGroup.get('passwordCtrl').getError('required')">
 
             Обязательное поле
+
+        </mat-error>
+
+        <mat-error *ngIf="formGroup.get('passwordCtrl').getError('authentication')">
+
+            Неверные учетные данные
 
         </mat-error>
 
@@ -56,14 +73,25 @@
 
     <div class="app-dialog-footer__actions">
 
-        <button form="loginForm"
+        <button [disabled]="formGroup.invalid"
+                form="loginForm"
                 mat-raised-button
                 color="primary"
-                [disabled]="formGroup.invalid">
+                cdkFocusInitial>
 
             ВХОД
 
         </button>
+
+    </div>
+
+</div>
+
+<div class="app-dialog-overlay" *ngIf="isProgressVisible$ | async">
+
+    <div class="app-dialog-overlay__spinner">
+
+        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
 
     </div>
 

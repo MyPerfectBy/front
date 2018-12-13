@@ -109,6 +109,8 @@ export class PerformerRegistrationDialogComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
 
+        this.isProgressVisible$.unsubscribe();
+
         this.destroy$.next();
 
         this.destroy$.unsubscribe();

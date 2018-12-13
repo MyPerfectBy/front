@@ -1,6 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {MatDialog} from '@angular/material';
 
+// rxjs
+import {Observable, Subject, Subscription} from 'rxjs';
+import {filter, switchMap, takeUntil, tap} from 'rxjs/operators';
+
+// models
+import {User} from '../../../../domain/models/user.model';
 // components
 import {
     AuthorizationDialogComponent
@@ -8,25 +15,49 @@ import {
 import {
     PerformerRegistrationDialogComponent
 } from '../../../registration/components/performer-registration-dialog/performer-registration-dialog.component';
+// services
+import {AuthorizationService} from '../../../authorization/services/authorization.service';
 
 @Component({
     selector: 'app-promo',
     templateUrl: './promo.component.html',
     styleUrls: ['./promo.component.scss']
 })
-export class PromoComponent implements OnInit {
+export class PromoComponent implements OnInit, OnDestroy {
 
     config: any;
+
     fullpage_api: any;
 
-    constructor(private dialogService: MatDialog) {
+    private destroy$ = new Subject();
+
+    private querySubscription: Subscription;
+
+    constructor(private dialogService: MatDialog, private route: ActivatedRoute, private router: Router,
+                private authorizationService: AuthorizationService) {
 
         this.config = {
-
-            menu: '#menu',
-            // navigation: true,
-
+            menu: '#menu'
         };
+
+        this.querySubscription = route.queryParams.subscribe(
+            (queryParam: any) => {
+                const code = queryParam['code'];
+
+                if (code) {
+
+                    this.authorizationService.authorizeByVk(code).pipe(
+                        switchMap((): Observable<User> => this.authorizationService.getUser()),
+                        filter((user: User): boolean => !!user),
+                        tap((user: User): void => {
+
+                            this.router.navigate([user.username]);
+                        }),
+                        takeUntil(this.destroy$)
+                    ).subscribe((result) => console.log(result) );
+                }
+            }
+        );
     }
 
     openPerformerRegistrationDialog(): void {
@@ -35,20 +66,36 @@ export class PromoComponent implements OnInit {
     }
 
     openAuthorizationDialog(): void {
-        const config = {};
 
-        const dialogRef = this.dialogService.open(AuthorizationDialogComponent, config);
+        const dialogRef = this.dialogService.open(AuthorizationDialogComponent);
 
-        dialogRef.afterClosed().subscribe(() => {
-        });
+        dialogRef.afterClosed()
+            .pipe(
+                switchMap((): Observable<User> => this.authorizationService.getUser()),
+                filter((user: User): boolean => !!user),
+                tap((user: User): void => {
+
+                    this.router.navigate([user.username]);
+                }),
+                takeUntil(this.destroy$)
+            )
+            .subscribe();
     }
 
     getRef(fullPageRef) {
         this.fullpage_api = fullPageRef;
     }
 
+// lifecycle hooks -------------------------------------------------------------------------------------------------------------------------
 
     ngOnInit() {
+    }
+
+    ngOnDestroy(): void {
+
+        this.destroy$.next();
+
+        this.destroy$.unsubscribe();
     }
 
 }

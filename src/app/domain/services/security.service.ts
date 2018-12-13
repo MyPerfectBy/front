@@ -1,21 +1,6 @@
-// models
-import {User} from '../models/user.model';
-// services
-import {AuthService} from './auth.service';
+export abstract class SecurityService {
 
-export class SecurityService {
-
-    constructor(private authService: AuthService) {
-    }
-
-    canCreateUser(): Promise<boolean> {
-
-        return this.authService.getUser()
-            .then((authUser: User): boolean => {
-
-                return !authUser;
-            });
-    }
+    abstract canCreateUser(): Promise<boolean>;
 
     // canAddPerformerFeedback(user: User): Promise<boolean>;
     //

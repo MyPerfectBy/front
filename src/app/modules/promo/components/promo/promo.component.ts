@@ -4,7 +4,7 @@ import {MatDialog} from '@angular/material';
 
 // rxjs
 import {Observable, Subject, Subscription} from 'rxjs';
-import {delay, filter, switchMap, takeUntil, tap} from 'rxjs/operators';
+import {filter, switchMap, takeUntil, tap} from 'rxjs/operators';
 
 // models
 import {User} from '../../../../domain/models/user.model';
@@ -48,7 +48,13 @@ export class PromoComponent implements OnInit, OnDestroy {
                 if (code) {
 
                     this.authorizationService.authorizeByVk(code).pipe(
-                        delay(10000)
+                        switchMap((): Observable<User> => this.authorizationService.getUser()),
+                        filter((user: User): boolean => !!user),
+                        tap((user: User): void => {
+
+                            this.router.navigate([user.username]);
+                        }),
+                        takeUntil(this.destroy$)
                     ).subscribe((result) => console.log(result) );
                 }
             }

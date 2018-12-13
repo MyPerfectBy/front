@@ -12,6 +12,8 @@ import {HeaderComponent} from './components/header/header.component';
 import {RegistrationModule} from './modules/registration/registration.module';
 // services
 import {UserService} from './domain/services/user.service';
+import { GraphQLModule } from './modules/graphql/graphql.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -27,7 +29,9 @@ import {UserService} from './domain/services/user.service';
         // Application Modules
         AuthorizationModule,
         PromoModule,
-        RegistrationModule
+        RegistrationModule,
+        GraphQLModule,
+        HttpClientModule
   ],
   providers: [
         {

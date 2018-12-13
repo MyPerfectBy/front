@@ -31,7 +31,7 @@ export class ApiService {
         };
 
         return this.apollo.query(options).pipe(
-            pluck('data', 'getUser'),
+            pluck('data', 'getProfile'),
             map((data: any): Performer => {
 
                 const performer: Performer = new Performer();
@@ -40,7 +40,7 @@ export class ApiService {
 
                 performer.id = data.id;
 
-                performer.username = data.username;
+                performer.username = data.title;
 
                 return performer;
             }),

@@ -1,81 +1,143 @@
-// page #1
-.page-container {
-  position: relative;
-  height: 100%;
+@import "../../../../../styles/variables";
+
+$media: screen;
+
+// promo
+.app-promo__fond {
   background: linear-gradient(to right, #ee6e9f, #ee8d6c);
-
+  height: 100%;
+  position: relative;
 }
 
-.header {
+.app-promo {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  height: 100%;
   justify-content: space-between;
-  padding: 6vh 17.35% 10vh;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 80px;
+
+  @media #{$media} and (max-width: map-get($grid, ml) - 1) {
+    padding: 0 30px;
+    @media #{$media} and (max-width: map-get($grid, mm) - 1) {
+      padding: 0 20px;
+    }
+  }
+
 }
 
-.logo {
+.app-promo__header {
   display: flex;
-  flex: 1;
-  font-family: Proxima Nova Th;
-  font-weight: 800;
-  font-size: 2vw;
-  text-transform: uppercase;
-  color: white;
+  margin: auto 0;
 }
 
-.log-in {
+.app-promo__main-content {
   display: flex;
-  flex: 1;
+  margin: auto 0;
+}
+
+.app-promo__action {
+  display: flex;
   justify-content: flex-end;
-  align-items: center;
+  margin: auto 0;
+
+  @media #{$media} and (max-width: map-get($grid, ts) - 1) {
+    justify-content: center;
+  }
+}
+
+.app-promo__logo {
+  display: flex;
+  flex: 1;
+  font-size: 36px;
+  text-transform: uppercase;
 
   font-family: Proxima Nova Th;
   font-weight: 800;
-  font-size: 1.11vw;
   color: white;
+
+  @media #{$media} and (max-width: map-get($grid, tl) - 1) {
+    font-size: 32px;
+    @media #{$media} and (max-width: map-get($grid, ts) - 1) {
+      font-size: 28px;
+      @media #{$media} and (max-width: map-get($grid, ml) - 1) {
+        font-size: 20px;
+        @media #{$media} and (max-width: map-get($grid, mm) - 1) {
+          font-size: 16px;
+        }
+      }
+    }
+  }
 }
 
-.log-in__cursor {
+.app-promo__log-in {
+  align-items: center;
+  color: white;
+  display: flex;
+  flex: 1;
+  font-family: Proxima Nova Th;
+  font-size: 20px;
+  font-weight: 800;
+  justify-content: flex-end;
+
+  @media #{$media} and (max-width: map-get($grid, ml) - 1) {
+    font-size: 16px;
+  }
+}
+
+.app-promo-log-in__cursor {
   cursor: pointer;
 }
 
-
-.main-content {
-  height: 100%;
-  padding: 0 17.35% 5vh
-}
-
-.typing-text {
-  font-size: 4.4vw;
+.app-promo__typing-text {
+  font-size: 84px;
   font-weight: 300;
-  line-height: 6.2vw;
-  margin-bottom: 5vh;
-  height: 23.92vw;
+  line-height: 1.4em;
+
+  @media #{$media} and (max-width: map-get($grid, dm) - 1) {
+    font-size: 80px;
+    @media #{$media} and (max-width: map-get($grid, ds) - 1) {
+      font-size: 60px;
+      @media #{$media} and (max-width: map-get($grid, tl) - 1) {
+        font-size: 40px;
+        @media #{$media} and (max-width: map-get($grid, ts) - 1) {
+          font-size: 32px;
+        }
+      }
+    }
+  }
+
 }
 
-.typing-text__font {
+.app-promo-typing-text__font {
+  color: white;
   font-family: Proxima Nova Th;
   font-weight: 800;
-  color: white;
 }
 
-.fibery-sign-in-btn {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.sign-in {
+.app-promo__sign-in {
   background-color: white;
   border-radius: 5px;
 }
 
-.sign-in__btn {
+.app-promo-sign-in__btn {
+  color: #ee6e9f;
   font-family: Proxima Nova Th;
   font-weight: 800;
-  color: #ee6e9f;
-  font-size: 2vw;
-  padding: 2vh 4vh 3vh;
+  font-size: 40px;
+  padding: 24px 36px;
+
+  @media #{$media} and (max-width: map-get($grid, tl) - 1) {
+    font-size: 32px;
+    @media #{$media} and (max-width: map-get($grid, ts) - 1) {
+      font-size: 28px;
+      padding: 12px 30px;
+      @media #{$media} and (max-width: map-get($grid, ml) - 1) {
+        font-size: 24px;
+      }
+    }
+  }
 
   &:hover {
     color: #ee8d6c;
@@ -84,60 +146,111 @@
 }
 
 
-// page #2
+// page
 
-
-.main-content-page {
+.app-page {
   height: 100%;
-  padding: 3vh 17.35% 6vh;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 32px 80px;
+
+  @media #{$media} and (max-width: map-get($grid, ts) - 1) {
+    padding: 32px 40px;
+    @media #{$media} and (max-width: map-get($grid, ml) - 1) {
+      padding: 0;
+    }
+  }
 }
 
 .frame {
-  height: 100%;
   border: 10px solid transparent;
   border-image: linear-gradient(to right, #ee6e9f 0%, #ee8d6c 100%) 1;
+  box-sizing: border-box;
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
-
+  justify-content: space-between;
+  height: 100%;
 }
 
-.main-content-page__title {
-  margin: 2% 40px;
+.app-page__title {
+  margin: 20px 20px auto;
 }
 
-.main-content-page__title_font {
+.app-page__title_font {
   font-family: Proxima Nova Lt;
   font-weight: 600;
-  font-size: 2vw;
+  font-size: 38px;
+  @media #{$media} and (max-width: map-get($grid, dm) - 1) {
+    font-size: 36px;
+    @media #{$media} and (max-width: map-get($grid, ds) - 1) {
+      font-size: 32px;
+      @media #{$media} and (max-width: map-get($grid, tl) - 1) {
+        font-size: 28px;
+        @media #{$media} and (max-width: map-get($grid, ts) - 1) {
+          font-size: 24px;
+        }
+      }
+    }
+  }
 }
 
-.main-content-page__image {
+.app-page__image {
   display: flex;
   justify-content: center;
-  margin: 0 20px;
+  margin: auto 20px;
 }
 
-.main-content-page__image_size {
-  width: 100%;
+.app-page__image_size {
   height: auto;
+  width: 100%;
 }
 
-.main-content-page__definition {
-  margin: 2% 0 5% 36%;
+.app-page__definition {
+  margin: auto 100px auto auto;
+  padding: 20px;
+  @media #{$media} and (max-width: map-get($grid, tl) - 1) {
+    margin: auto 50px auto auto;
+    @media #{$media} and (max-width: map-get($grid, ts) - 1) {
+      margin: auto 0;
+    }
+  }
 }
 
-.main-content-page__definition_title {
-  margin: 0 0 4% 0;
+.app-page__definition_title {
   font-family: Proxima Nova Lt;
   font-weight: 600;
-  font-size: 2vw;
+  font-size: 38px;
+  margin: 28px 0;
+  @media #{$media} and (max-width: map-get($grid, dm) - 1) {
+    font-size: 36px;
+    @media #{$media} and (max-width: map-get($grid, ds) - 1) {
+      font-size: 32px;
+      @media #{$media} and (max-width: map-get($grid, tl) - 1) {
+        font-size: 28px;
+        @media #{$media} and (max-width: map-get($grid, ts) - 1) {
+          font-size: 24px;
+        }
+      }
+    }
+  }
 }
 
-.main-content-page__definition_description {
+.app-page__definition_description {
   font-family: Proxima Nova Rg;
   font-weight: normal;
-  font-size: 1.2vw;
+  font-size: 24px;
+  @media #{$media} and (max-width: map-get($grid, dm) - 1) {
+    font-size: 20px;
+    @media #{$media} and (max-width: map-get($grid, ds) - 1) {
+      font-size: 16px;
+      @media #{$media} and (max-width: map-get($grid, tl) - 1) {
+        font-size: 16px;
+        @media #{$media} and (max-width: map-get($grid, ts) - 1) {
+          font-size: 16px;
+        }
+      }
+    }
+  }
 }
 
 .link {

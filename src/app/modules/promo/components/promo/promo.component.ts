@@ -24,7 +24,7 @@ export class PromoComponent implements OnInit {
         this.config = {
 
             menu: '#menu',
-            navigation: true,
+            // navigation: true,
 
         };
     }

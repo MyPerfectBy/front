@@ -65,7 +65,6 @@ export class AuthorizationDialogComponent implements OnInit, OnDestroy {
         const password: string = this.formGroup.get('passwordCtrl').value;
 
         this.authorizationService.authorizeByForm(login, password).pipe(
-            delay(10000),
             takeUntil(this.destroy$)
         ).subscribe(
             () => {

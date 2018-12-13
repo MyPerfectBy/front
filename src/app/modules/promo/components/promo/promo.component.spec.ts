@@ -1,6 +1,7 @@
 import {Directive, Input} from '@angular/core';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {MatDialog} from '@angular/material';
+import {ActivatedRoute} from '@angular/router';
 
 // jasmine
 import createSpyObj = jasmine.createSpyObj;
@@ -11,6 +12,8 @@ import {PromoComponent} from './promo.component';
 import {
     PerformerRegistrationDialogComponent
 } from '../../../registration/components/performer-registration-dialog/performer-registration-dialog.component';
+import {HttpClient} from '@angular/common/http';
+import {NEVER} from 'rxjs';
 
 
 describe('PromoComponent', () => {
@@ -32,6 +35,8 @@ describe('PromoComponent', () => {
                 FullpageStubDirective
             ],
             providers: [
+                { provide: ActivatedRoute, useValue: { queryParams: NEVER } },
+                { provide: HttpClient, useValue: {} },
                 { provide: MatDialog, useValue: matDialogSpy }
             ]
         }).compileComponents();

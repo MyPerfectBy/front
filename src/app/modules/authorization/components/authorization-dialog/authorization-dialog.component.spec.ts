@@ -11,7 +11,6 @@ import {
     MatInputModule,
     MatProgressSpinnerModule
 } from '@angular/material';
-import {HttpClientModule} from '@angular/common/http';
 
 describe('AuthorizationDialogComponent', () => {
 
@@ -25,7 +24,6 @@ describe('AuthorizationDialogComponent', () => {
             imports: [
                 NoopAnimationsModule,
                 ReactiveFormsModule,
-                HttpClientModule,
 
                 // material
                 MatFormFieldModule,

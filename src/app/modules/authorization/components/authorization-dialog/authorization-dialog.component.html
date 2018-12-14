@@ -9,15 +9,12 @@
 </div>
 
 <div class="app-dialog-social-networks">
-    <mat-button-toggle-group #group="matButtonToggleGroup" (change)="networksAuthorization(group.value)">
-
-        <mat-button-toggle [value]="googleAuthorizeUrl" class="app-dialog-social-networks__button app-dialog-social-networks__button_google"></mat-button-toggle>
-
-        <mat-button-toggle [value]="vkAuthorizeUrl" class="app-dialog-social-networks__button  app-dialog-social-networks__button_vk"></mat-button-toggle>
-
-        <mat-button-toggle [value]="odnoklassnikiAuthorizeUrl" class=" app-dialog-social-networks__button app-dialog-social-networks__button_odnoklassniki"></mat-button-toggle>
-
-    </mat-button-toggle-group>
+    <a [href]="googleAuthorizeUrl" class="app-dialog-social-networks__button app-dialog-social-networks__button_google"
+       tabindex="-1"></a>
+    <a [href]="vkAuthorizeUrl" class="app-dialog-social-networks__button  app-dialog-social-networks__button_vk"
+       tabindex="-1"></a>
+    <a [href]="odnoklassnikiAuthorizeUrl"
+       class="app-dialog-social-networks__button  app-dialog-social-networks__button_odnoklassniki" tabindex="-1"></a>
 </div>
 
 

@@ -20,7 +20,12 @@
     background-repeat: no-repeat;
     background-position: center;
     border-bottom: 0 solid white;
+    transition:all 0.3s ease;
+    &:hover{
+        opacity: 0.9;
+    }
 }
+
 
 .app-dialog-social-networks__button_vk {
     background-image: url("./assets/images/vk.svg");

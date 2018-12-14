@@ -36,7 +36,8 @@ export class AuthorizationDialogComponent implements OnInit, OnDestroy {
 
     }
 
-    networksAuthorization(href: string): void {
+    networksAuthorization(href) {
+        console.log(href);
         this.document.location.href = href;
     }
 

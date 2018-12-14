@@ -36,8 +36,7 @@ import {AuthorizationDialogComponent} from './components/authorization-dialog/au
         MatInputModule,
         MatProgressSpinnerModule,
         MatSelectModule,
-        MatDividerModule,
-        MatButtonToggleModule
+        MatDividerModule
     ]
 })
 export class AuthorizationModule {

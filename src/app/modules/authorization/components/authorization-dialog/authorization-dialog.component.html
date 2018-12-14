@@ -9,83 +9,14 @@
 </div>
 
 <div class="app-dialog-social-networks">
-
-    <button mat-icon-button type="button">
-
-        <mat-icon svgIcon="google-plus" aria-label="google-plus"></mat-icon>
-
-    </button>
-
-    <a mat-icon-button [href]="vkAuthorizeUrl">
-
-        <mat-icon svgIcon="vk" aria-label="VKontakte"></mat-icon>
-
-    </a>
-
-    <button mat-icon-button type="button">
-
-        <mat-icon svgIcon="odnoklassniki" aria-label="odnoklassniki"></mat-icon>
-
-    </button>
-
+    <a [href]="googleAuthorizeUrl" class="app-dialog-social-networks__button app-dialog-social-networks__button_google"
+       tabindex="-1"></a>
+    <a [href]="vkAuthorizeUrl" class="app-dialog-social-networks__button  app-dialog-social-networks__button_vk"
+       tabindex="-1"></a>
+    <a [href]="odnoklassnikiAuthorizeUrl"
+       class="app-dialog-social-networks__button  app-dialog-social-networks__button_odnoklassniki" tabindex="-1"></a>
 </div>
-<mat-divider></mat-divider>
 
-<form class="app-dialog-form"
-      id="loginForm"
-      autocomplete="off"
-      [formGroup]="formGroup"
-      (ngSubmit)="onFormSubmit()">
-
-    <mat-form-field class="app-dialog-form__field">
-
-        <input matInput placeholder="Ваш email или имя пользователя" formControlName="emailCtrl">
-
-        <mat-error>
-
-            Обязательное поле
-
-        </mat-error>
-
-    </mat-form-field>
-
-    <mat-form-field class="app-dialog-form__field">
-
-        <input matInput type="password" placeholder="Ваш пароль" formControlName="passwordCtrl">
-
-        <mat-error *ngIf="formGroup.get('passwordCtrl').getError('required')">
-
-            Обязательное поле
-
-        </mat-error>
-
-        <mat-error *ngIf="formGroup.get('passwordCtrl').getError('authentication')">
-
-            Неверные учетные данные
-
-        </mat-error>
-
-    </mat-form-field>
-
-</form>
-
-<div class="app-dialog-footer app-dialog-form__actions">
-
-    <div class="app-dialog-footer__actions">
-
-        <button [disabled]="formGroup.invalid"
-                form="loginForm"
-                mat-raised-button
-                color="primary"
-                cdkFocusInitial>
-
-            ВХОД
-
-        </button>
-
-    </div>
-
-</div>
 
 <div class="app-dialog-overlay" *ngIf="isProgressVisible$ | async">
 

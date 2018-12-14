@@ -1,14 +1,15 @@
-import {Component, HostBinding, OnDestroy, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {MatDialogRef, MatIconRegistry} from '@angular/material';
-import {DomSanitizer} from '@angular/platform-browser';
+import {Component, HostBinding, Inject, OnDestroy, OnInit} from '@angular/core';
+import { FormGroup} from '@angular/forms';
+import {MatDialogRef} from '@angular/material';
+
 
 // rxjs
 import {Subject} from 'rxjs';
-import {delay, takeUntil} from 'rxjs/operators';
+
 
 // services
 import {AuthorizationService} from '../../services/authorization.service';
+import {DOCUMENT} from '@angular/common';
 
 @Component({
     selector: 'app-authorization-dialog',
@@ -17,71 +18,27 @@ import {AuthorizationService} from '../../services/authorization.service';
 })
 export class AuthorizationDialogComponent implements OnInit, OnDestroy {
 
-    formGroup: FormGroup;
-
     isProgressVisible$ = new Subject<boolean>();
 
     private destroy$ = new Subject();
 
-    vkAuthorizeUrl = 'https://oauth.vk.com/authorize?client_id=6779491&display=popup&redirect_uri=http://dev.makeperfect.by&scope=email&response_type=code';
+    vkAuthorizeUrl =
+        'https://oauth.vk.com/authorize?client_id=6779491&display=popup&redirect_uri=http://dev.makeperfect.by&scope=email&response_type=code';
+    googleAuthorizeUrl =
+        'https://www.google.com/';
+    odnoklassnikiAuthorizeUrl =
+        'https://odnoklassniki.ru/';
 
     @HostBinding('class.app-dialog') private isDefaultClassUsed = true;
 
-    constructor(private dialogRef: MatDialogRef<AuthorizationDialogComponent>, iconRegistry: MatIconRegistry,
-                sanitizer: DomSanitizer, private authorizationService: AuthorizationService, ) {
+    constructor(private dialogRef: MatDialogRef<AuthorizationDialogComponent>,
+                private authorizationService: AuthorizationService, @Inject(DOCUMENT) private document: any) {
 
-        iconRegistry.addSvgIcon(
-            'vk',
-            sanitizer.bypassSecurityTrustResourceUrl('assets/images/vk.svg')
-        );
-        iconRegistry.addSvgIcon(
-            'google-plus',
-            sanitizer.bypassSecurityTrustResourceUrl('assets/images/google-plus.svg')
-        );
-        iconRegistry.addSvgIcon(
-            'odnoklassniki',
-            sanitizer.bypassSecurityTrustResourceUrl('assets/images/odnoklassniki.svg')
-        );
     }
 
-    private initializeForm() {
-
-        const emailCtrl = new FormControl(null, [Validators.required]);
-
-        const passwordCtrl = new FormControl(null, [Validators.required]);
-
-        this.formGroup = new FormGroup({
-            emailCtrl,
-            passwordCtrl,
-        });
-    }
-
-    onFormSubmit() {
-
-        this.showProgress();
-
-        const login: string = this.formGroup.get('emailCtrl').value;
-
-        const password: string = this.formGroup.get('passwordCtrl').value;
-
-        this.authorizationService.authorizeByForm(login, password).pipe(
-            takeUntil(this.destroy$)
-        ).subscribe(
-            () => {
-
-               this.dialogRef.close();
-            },
-            () => {
-
-                this.hideProgress();
-
-                const passwordCtrl: FormControl = this.formGroup.get('passwordCtrl') as FormControl;
-
-                passwordCtrl.setValue('', { emitEvent: false });
-
-                passwordCtrl.setErrors({ authentication: true });
-            }
-        );
+    networksAuthorization(href) {
+        console.log(href);
+        this.document.location.href = href;
     }
 
     private hideProgress(): void {
@@ -97,7 +54,7 @@ export class AuthorizationDialogComponent implements OnInit, OnDestroy {
 // lifecycle hooks -------------------------------------------------------------------------------------------------------------------------
 
     ngOnInit() {
-        this.initializeForm();
+
     }
 
     ngOnDestroy(): void {

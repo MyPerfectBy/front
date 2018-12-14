@@ -10,7 +10,39 @@
 
 .app-dialog-social-networks {
     display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-around;
-    margin-bottom: 4px;
+    margin-top: 12px;
 }
+
+.app-dialog-social-networks__button {
+    width: 100px;
+    height: 100px;
+    background-size: 100px 100px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-bottom: 0 solid white;
+    transition:all 0.3s ease;
+    &:hover{
+        opacity: 0.9;
+    }
+}
+
+
+.app-dialog-social-networks__button_vk {
+    background-image: url("./assets/images/vk.svg");
+    background-color: #4c75a3;
+    background-size: 74px;
+}
+
+.app-dialog-social-networks__button_google {
+    background-image: url("./assets/images/google-plus.svg");
+    background-color: #d95032;
+    background-size: 78px;
+}
+
+.app-dialog-social-networks__button_odnoklassniki {
+    background-image: url("./assets/images/odnoklassniki.svg");
+    background-color: #f48420;
+    background-size: 65px;
+}
+
+

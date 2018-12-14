@@ -40,7 +40,7 @@ export class ApiService {
 
                 performer.id = data.id;
 
-                performer.username = data.title;
+                performer.username = data.user.username;
 
                 return performer;
             }),

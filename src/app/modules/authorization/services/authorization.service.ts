@@ -2,8 +2,12 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 
 // rxjs
-import {Observable} from 'rxjs';
-import {mapTo} from 'rxjs/operators';
+import {Observable, of} from 'rxjs';
+import {mapTo, tap} from 'rxjs/operators';
+
+// service
+import {ApiService} from '../../api/services/api.service';
+import {User} from '../../../domain/models/user.model';
 
 
 @Injectable({
@@ -15,7 +19,9 @@ export class AuthorizationService {
 
     readonly authorizeByVkUrl = 'http://dev-back.makeperfect.by/connect/vkontakte?code=';
 
-    constructor(private httpClient: HttpClient) { }
+    private user: User;
+
+    constructor(private httpClient: HttpClient, private apiService: ApiService) { }
 
     authorizeByForm(login: string, password: string): Observable<boolean> {
 
@@ -35,5 +41,17 @@ export class AuthorizationService {
         return this.httpClient.get(this.authorizeByVkUrl + code, ).pipe(
             mapTo(true)
         );
+    }
+
+    getUser(): Observable<User> {
+
+        return this.user
+            ? of(this.user)
+            : this.apiService.getUser().pipe(
+                tap((user: User): void => {
+
+                    this.user = user;
+                })
+            );
     }
 }

@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {
@@ -27,7 +26,6 @@ import {AuthorizationDialogComponent} from './components/authorization-dialog/au
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpClientModule,
 
         // Material Modules
         MatButtonModule,

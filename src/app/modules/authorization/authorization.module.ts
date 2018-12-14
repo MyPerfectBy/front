@@ -4,7 +4,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {
-    MatButtonModule,
+    MatButtonModule, MatButtonToggleModule,
     MatDatepickerModule,
     MatDialogModule, MatDividerModule,
     MatFormFieldModule,
@@ -38,7 +38,8 @@ import {AuthorizationDialogComponent} from './components/authorization-dialog/au
         MatInputModule,
         MatProgressSpinnerModule,
         MatSelectModule,
-        MatDividerModule
+        MatDividerModule,
+        MatButtonToggleModule
     ]
 })
 export class AuthorizationModule {
